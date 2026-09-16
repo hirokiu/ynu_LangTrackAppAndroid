@@ -78,25 +78,19 @@
                         android:textColor="@color/lta_blue"
                         android:textSize="17sp" />
 
-                    <TextView
+                    <!--<TextView
                         android:id="@+id/aboutFoundingTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Founded by"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="15dp"
-                        android:layout_marginEnd="10dp"/>
-
-                    <ImageView
-                        android:id="@+id/aboutFoundingImageView"
-                        android:layout_width="200dp"
-                        android:layout_height="100dp"
-                        android:layout_marginStart="10dp"
-                        android:scaleType="fitStart"
-                        app:srcCompat="@drawable/founding_en" />
+                        android:layout_marginEnd="10dp"/>-->
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+            <!-- 2段目 -->
+<!--
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -120,7 +114,19 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/aboutTeamTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@android:color/transparent"
+                        android:text="@string/team"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/lta_blue"
+                        android:textSize="18sp"
+		        android:textStyle="bold" />
+
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
@@ -129,15 +135,79 @@
                         android:background="@android:color/transparent"
                         android:clickable="true"
                         android:focusable="true"
-                        android:paddingBottom="8dp"
-                        android:text=""
+			android:text="@string/marianneInfo"
                         android:textAlignment="textStart"
                         android:textColor="@color/lta_blue"
-                        android:textSize="17sp" />
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@android:color/transparent"
+                        android:clickable="true"
+                        android:focusable="true"
+			android:text="@string/jonasInfo"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/lta_blue"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@android:color/transparent"
+                        android:clickable="true"
+                        android:focusable="true"
+			android:text="@string/henrietteInfo"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/lta_blue"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@android:color/transparent"
+                        android:clickable="true"
+                        android:focusable="true"
+			android:text="@string/josefInfo"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/lta_blue"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@android:color/transparent"
+                        android:clickable="true"
+                        android:focusable="true"
+			android:text="@string/stephanInfo"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/lta_blue"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/contactLuLinkTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+		        android:layout_marginEnd="10dp" />
 
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+-->
 
         </GridLayout>
 

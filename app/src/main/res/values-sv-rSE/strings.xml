@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Lang Track App</string>
     <string name="empty_list_info">Här var det tomt…\nNär Humlabbet tilldelar dig en enkät kommer den att hamna här</string>
     <string name="server_fail_info">Ingen kontakt med server</string>
     <string name="mail_subject">Angående Lang-Track-App</string>

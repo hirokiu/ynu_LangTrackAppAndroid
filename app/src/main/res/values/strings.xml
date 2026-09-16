@@ -1,23 +1,22 @@
 <resources>
-    <string name="app_name">Lang Track App</string>
+    <string name="app_name">KIROKUN (キロクン)</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="loading" translatable="false">Laddar värde</string>
     <string name="Open" translatable="false">Open</string>
     <string name="Close">Close</string>
-    <string name="empty_list_info">There\'s nothing here... \nWhen Humlab assigns you a survey, you will see it here.</string>
     <string name="server_fail_info">No contact with server</string>
-    <string name="mail_subject">Concerning Lang-Track-App</string>
-    <string name="mail_reserch_body">-Here you can write to the researchers for Lang-Track-App-</string>
-    <string name="mail_tech_body">-Here you can write to the developers for Lang-Track-App-</string>
-    <string name="reserchText1">If you are experiencing any technical issues, please contact Stephan Björck.\nstephan.bjorck@humlab.lu.se\n\nIf you have questions or comments about the content of the survey, please email Henriette Arndt.\nhenriette.arndt@humlab.lu.se</string>
+    <string name="mail_subject">Concerning the Lang Track App</string>
+    <string name="mail_reserch_body">-Here you can write to the researchers for Lang Track App-</string>
+    <string name="mail_tech_body">-Here you can write to the developers for Lang Track App-</string>
+    <string name="reserchText1">"If you are experiencing any technical issues or have any questions/comments about the content of the survey, please email; ltajapan2024@gmail.com "</string>
 
     <string name="log_out">Log out</string>
-    <string name="doYouWantToLogOut">Do you want to log out \n%1$s?</string>
+    <string name="doYouWantToLogOut">When Humlab assigns you a survey, you will see it here.</string>
     <string name="cancel">Cancel</string>
-    <string name="langTrackApp" translatable="false">Lang-Track-App</string>
-    <string name="humanityLab">Humanities Lab</string>
+    <string name="langTrackApp" translatable="false">KIROKUN (キロクン)</string>
+    <string name="humanityLab">YNU-LTA Ver 0.1</string>
     <string name="menu">Menu</string>
     <string name="loggedInAs">Logged in as</string>
     <string name="logOut">Log out</string>
@@ -61,7 +60,7 @@
     <string name="minutes">Minutes</string>
     <string name="doYouWantToCloseTheSurvey">Do you want to close the survey and return to the start page?\nThe answers will not be saved.</string>
     <string name="closeTheSurvey">Close survey</string>
-    <string name="langTrackAppInfo1">The Lang Track App is an app developed by Lund University Humanities Lab for research purposes.\n\nLog in with the username and password assigned to you by Lund University Humanities Lab</string>
+    <string name="langTrackAppInfo1">The Lang Track App App is an app developed by the University of York, Centre for Advanced Studies in Language and Education.\n\nLog in with the username and password assigned to you</string>
     <string name="info">Info</string>
     <string name="enterCredentials">Please enter your username and password</string>
     <string name="authenticationFailed">Authentication failed.</string>
@@ -70,20 +69,20 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="logIn">Log in</string>
-    <string name="menuProjectAbout">We developed the Lang-Track-App to study when, where, and how often language learners are in contact with different foreign languages in everyday life. This crucial to improving our understanding of the challenges of language learning outside of classrooms.\n\nThe project is a collaboration between the Lund University Centre for Languages and Literature and Lund University Humanities Lab.</string>
+    <string name="menuProjectAbout">We developed the Lang-Track-App to study when, where, and how often language learners are in contact with different foreign languages in everyday life. This crucial to improving our understanding of the challenges of language learning outside of classrooms.</string>
     <string name="links">Links</string>
     <string name="lund_university">Lund University</string>
-    <string name="marianneInfo">Marianne Gullberg, Professor of Psycholinguistics, Centre for Languages and Literature</string>
-    <string name="jonasInfo">Jonas Granfeldt, Professor of French Linguistics, Centre for Languages and Literature</string>
+    <string name="marianneInfo">Zoe Handley, Senior Lecturer, Education Department, University of York</string>
+    <string name="jonasInfo">Clare Wright, Associate Professor in Linguistics and Language</string>
     <string name="team">Team</string>
-    <string name="henrietteInfo">Henriette Arndt, Postdoctoral Research Fellow, LU Humanities Lab</string>
-    <string name="josefInfo">Josef Granqvist, Systems Developer, LU Humanities Lab</string>
-    <string name="stephanInfo">Stephan Björck, Systems Developer, LU Humanities Lab</string>
+    <string name="henrietteInfo">Philip Harrison, Research Software Engineer Team Lead, University of York RSE Team</string>
+    <string name="josefInfo">Stuart Lacy, Research Software Engineer, University of York RSE Team</string>
+    <string name="stephanInfo">Viktor Czyzewski, University of York RSE Team</string>
     <string name="instructions">Instructions</string>
-    <string name="instructionsText">We will ask you to complete brief surveys in this app a few times per day. You will receive a push notification whenever there is a new survey. Make sure you keep your phone nearby and the notification sounds turned on!  \n\nIt’s important that you answer each survey as soon as possible. If you don’t answer a survey, it will automatically expire after 60 minutes.</string>
-    <string name="dataProcessingInfo">In addition to your survey responses, the app will automatically record the date and time when you opened each survey and when you submitted your answers. The app will not record any other data, e.g. about your location.  \n\nYour data will be compiled and analyzed by the project team. No one else will have access to your answers. When we report the results of the project, all information will be anonymized.</string>
+    <string name="instructionsText">You will be asked to complete brief surveys in this app 1-3 times per day. You will receive a push notification whenever there is a new survey. Make sure you keep your phone nearby and the notification sounds turned on!   It\'s important that you answer each survey as soon as possible. If you don\'t answer a survey, it will automatically expire after 60 minutes.</string>
+    <string name="dataProcessingInfo">In addition to your survey responses, the app will automatically record the date and time when you opened each survey and when you submitted your answers. The app will not record any other data, e.g. about your location.  \n\nYour data will be compiled and analyzed by the project team. No one else will have access to your answers. When we report the results of the project, all information will be anonymised.</string>
     <string name="dataProcessingHeader">Data processing</string>
-    <string name="founding">Funded by</string>
+    <string name="founding">Developed by \nUniversity of York RSE Team</string>
     <string name="founder_image_name">founding_en</string>
     <string name="founding_link_address">https://maw.wallenberg.org/en</string>
     <string name="click_here">click here</string>
@@ -93,8 +92,9 @@
     <string name="minute">minute</string>
     <string name="day">day</string>
     <string name="days">days</string>
-    <string name="timeLeft">Time left:</string>
+    <string name="timeLeft">The project is a collaboration between the Lund University Centre for Languages and Literature and Lund University Humanities Lab.</string>
     <string name="and">and</string>
     <string name="survey_expired">Survey expired</string>
     <string name="youHaveAnsweredWithFormate">You have answered %s of your %s assigned surveys.</string>
+    <string name="empty_list_info">"There's nothing here... "</string>
 </resources>

@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name='Lang Track App'
+rootProject.name='iSpeak'

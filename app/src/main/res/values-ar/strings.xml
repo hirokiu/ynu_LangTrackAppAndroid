@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Lang Track App</string>
     <string name="Close">إغلاق</string>
     <string name="empty_list_info">\"لايوجد أي شيء هنا،  عندما يكلفك مختبر الإنسانيات باستبيان، ستراه هنا.\"</string>
     <string name="server_fail_info">No contact with server</string>
@@ -11,8 +10,7 @@
     <string name="log_out">خروج</string>
     <string name="doYouWantToLogOut">هل تريد الخروج</string>
     <string name="cancel">إلغاء</string>
-    <string name="humanityLab">Humanities Lab</string>
-    <string name="menu">القائمة الرئيسية</string>
+    <string name="humanityLab">YNU-LTA Ver 0.1</string>
     <string name="loggedInAs">دخول باسم</string>
     <string name="logOut">خروج</string>
     <string name="contakt">اتصل</string>

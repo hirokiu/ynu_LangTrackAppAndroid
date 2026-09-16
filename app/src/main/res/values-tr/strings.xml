@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Lang Track App</string>
     <string name="Close">Kapat</string>
     <string name="empty_list_info">Burası boştu…\nHumlabbet size bir anket gönderdiğinde, burada görünecek</string>
     <string name="server_fail_info">Sunucuyla iletişim yok</string>

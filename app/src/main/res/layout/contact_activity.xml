@@ -74,11 +74,10 @@
                             android:background="@android:color/transparent"
                             android:clickable="true"
                             android:focusable="true"
-                            android:text=""
+			    android:text="@string/reserchText1"
                             android:textAlignment="textStart"
                             android:textColor="@color/lta_blue"
                             android:textSize="16sp" />
-
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -121,7 +120,6 @@
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
-
                         <TextView
                             android:id="@+id/contactLtaLinkTextView"
                             android:layout_width="match_parent"
@@ -132,7 +130,7 @@
                             android:background="@android:color/transparent"
                             android:clickable="true"
                             android:focusable="true"
-                            android:text="@string/langTrackApp"
+                            android:text="LangTrackApp"
                             android:textAlignment="textStart"
                             android:textColor="@color/lta_blue"
                             android:textSize="16sp"/>

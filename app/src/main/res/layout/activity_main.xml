@@ -6,10 +6,10 @@
     <data>
         <variable
             name="viewModel"
-            type="se.lu.humlab.langtrackapp.screen.main.MainViewModel"/>
+            type="com.alchembright.dev.langtrackapp.screen.main.MainViewModel"/>
         <variable
             name="currentUser"
-            type="se.lu.humlab.langtrackapp.data.model.User" />
+            type="com.alchembright.dev.langtrackapp.data.model.User" />
     </data>
 
     <androidx.drawerlayout.widget.DrawerLayout

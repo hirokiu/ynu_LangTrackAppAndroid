@@ -180,7 +180,7 @@
                     android:textColor="@color/lta_text"
                     android:textStyle="bold" />
 
-                <RadioButton
+                <!--<RadioButton
                     android:id="@+id/likertScaleRadioButtonNA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -188,7 +188,7 @@
                     android:tag="5"
                     android:text="N/A"
                     android:textColor="@color/lta_grey"
-                    android:textColorLink="@color/lta_blue" />
+                    android:textColorLink="@color/lta_blue" />-->
             </RadioGroup>
         </LinearLayout>
 

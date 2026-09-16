@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="se.lu.humlab.langtrackapp">
+    package="com.alchembright.dev.langtrackapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
@@ -17,7 +18,7 @@
         tools:ignore="GoogleAppIndexingWarning">
         <!-- Firebase Messaging -->
         <service
-            android:name=".util.MyFirebaseInstanceIDService"
+            android:name="com.alchembright.dev.langtrackapp.util.MyFirebaseInstanceIDService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -39,34 +40,35 @@
             android:resource="@color/lta_blue" />
 
         <activity
-            android:name=".screen.instructions.InstructionsActivity"
+            android:name="com.alchembright.dev.langtrackapp.screen.instructions.InstructionsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".screen.contact.ContactActivity"
+            android:name="com.alchembright.dev.langtrackapp.screen.contact.ContactActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".screen.about.AboutActivity"
+            android:name="com.alchembright.dev.langtrackapp.screen.about.AboutActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".screen.overview.OverviewActivity"
+            android:name="com.alchembright.dev.langtrackapp.screen.overview.OverviewActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".screen.login.LoginActivity"
+            android:name="com.alchembright.dev.langtrackapp.screen.login.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".screen.surveyContainer.SurveyContainerActivity"
-            android:parentActivityName=".screen.main.MainActivity"
+            android:name="com.alchembright.dev.langtrackapp.screen.surveyContainer.SurveyContainerActivity"
+            android:parentActivityName="com.alchembright.dev.langtrackapp.screen.main.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".screen.splash.SplashActivity"
+            android:name="com.alchembright.dev.langtrackapp.screen.splash.SplashActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -74,7 +76,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".screen.main.MainActivity"
+            android:name="com.alchembright.dev.langtrackapp.screen.main.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>

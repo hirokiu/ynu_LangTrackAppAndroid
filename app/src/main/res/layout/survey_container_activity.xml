@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="se.lu.humlab.langtrackapp.screen.surveyContainer.SurveyContainerViewModel"/>
+            type="com.alchembright.dev.langtrackapp.screen.surveyContainer.SurveyContainerViewModel"/>
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout

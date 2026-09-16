@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="reserchText1">"If you are experiencing any technical issues or have any questions/comments about the content of the survey, please email; ltajapan2024@gmail.com "</string>
+    <string name="humanityLab">YNU-LTA Ver 0.1</string>
+    <string name="menu">メニュー</string>
+    <string name="loggedInAs">ログイン中：</string>
+    <string name="logOut">ログアウト</string>
+    <string name="contakt">連絡先</string>
+    <string name="about">このアプリについて</string>
+    <string name="instructions">使い方</string>
+    <string name="timeLeftMinute">残り：%1d 分</string>
+    <string name="timeLeftMinutes">残り：%2d 分</string>
+    <string name="hour">時間</string>
+    <string name="hours">時間</string>
+    <string name="timeLeftOneMinute">残り：%1d 分</string>
+    <string name="answered">回答済み</string>
+    <string name="noDate">noDate</string>
+    <string name="unanswered">未回答</string>
+    <string name="dateFormat">yyyy-MM-dd HH:mm</string>
+    <string name="answeredSurvey">回答済み</string>
+    <string name="unansweredSurvey">未回答</string>
+    <string name="published">公開日：</string>
+    <string name="expired">終了日：</string>
+    <string name="numberOfQuestions">問題数：</string>
+    <string name="numberEnding">%d</string>
+    <string name="noTitle">noTitle</string>
+    <string name="humanitiesLab">LTA研究グループ</string>
+    <string name="oneHour">%d 時間</string>
+    <string name="manyHours">%d 時間</string>
+    <string name="numberOfMinutes">%d 分</string>
+    <string name="numberOfHourAndMinutes">%d 時間 %d 分</string>
+    <string name="numberOfHoursAndMinutes">%d 時間 %d 分</string>
+    <string name="noDuration">0 時間 0 分</string>
+    <string name="next">次へ</string>
+    <string name="previous">前に戻る</string>
+    <string name="start">開始</string>
+    <string name="username">ユーザ名</string>
+    <string name="password">パスワード</string>
+    <string name="logIn">ログイン</string>
+    <string name="team">研究チーム</string>
+</resources>

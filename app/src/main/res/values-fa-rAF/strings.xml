@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Lang Track App</string>
     <string name="Close">ببندید</string>
     <string name="empty_list_info">اینجا خالی است\nوقتی Humlabbet (آزمایشگاۀ علوم انسانی) یک پرسشنامه را برای شما اختصاص می دهد، شما آن را در اینجا خواهید دید.</string>
     <string name="server_fail_info">بدون تماس با سرور</string>
