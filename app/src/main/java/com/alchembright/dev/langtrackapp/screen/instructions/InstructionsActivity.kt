@@ -1,5 +1,6 @@
 package com.alchembright.dev.langtrackapp.screen.instructions
 
+import com.alchembright.dev.langtrackapp.util.applySystemBarInsets
 import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
@@ -24,6 +25,7 @@ class InstructionsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         mBind = DataBindingUtil.setContentView(this, R.layout.instructions_activity)
+        applySystemBarInsets()
         mBind.lifecycleOwner = this
         mBind.executePendingBindings()
 
@@ -31,7 +33,7 @@ class InstructionsActivity : AppCompatActivity() {
             mBind.informationTopView.isSelected = mBind.informationScroll.canScrollVertically(-1)
         }
         mBind.instructionsTopCloseButton.setOnClickListener {
-            onBackPressed()
+            onBackPressedDispatcher.onBackPressed()
         }
 
         mBind.informationInfoTextView.text = getString(R.string.instructionsText)

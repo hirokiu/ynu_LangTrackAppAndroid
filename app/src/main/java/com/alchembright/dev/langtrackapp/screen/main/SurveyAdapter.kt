@@ -67,17 +67,18 @@ class SurveyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val assignment = items[position]
         when(holder){
             is ActiveViewHolder -> {
                 holder.setCallbacks()
-                holder.bind(items[position], position, object: OnExpiredListener{
+                holder.bind(assignment, object: OnExpiredListener{
                     override fun assignmentExpired() {
                         notifyDataSetChanged()
                     }
                 })
             }
             is SurveyItemViewHolder -> {
-                holder.bind(items[position], position)
+                holder.bind(assignment)
             }
             is StatisticsViewHolder -> {
                 holder.bind(getNumberOfAnswered(),getNumberOfUnanswered())

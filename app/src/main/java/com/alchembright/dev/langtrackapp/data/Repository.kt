@@ -485,12 +485,12 @@ class Repository(val context: Context) {
                 if (newsurvey != null) {
 
                     //if expireAt is empty -> set expireAt to one hour from publishAt
-                    @RequiresApi(Build.VERSION_CODES.O)
                     if (newexpireAt.isEmpty()){
                         val publishDate = newpublishAt.toDate()
                         if (publishDate != null){
-                            val newDateString = publishDate.toInstant().plusMillis(1000 * 60 * 60)
-                            newexpireAt = newDateString.toString()
+                            val formatter = java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", java.util.Locale.US)
+                            formatter.timeZone = java.util.TimeZone.getTimeZone("UTC")
+                            newexpireAt = formatter.format(java.util.Date(publishDate.time + 60 * 60 * 1000L))
                         }
                     }
                     theListWithSurveys.add(

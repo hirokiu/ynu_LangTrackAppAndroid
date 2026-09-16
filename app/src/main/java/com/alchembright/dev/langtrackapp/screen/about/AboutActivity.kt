@@ -1,5 +1,6 @@
 package com.alchembright.dev.langtrackapp.screen.about
 
+import com.alchembright.dev.langtrackapp.util.applySystemBarInsets
 import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
@@ -28,6 +29,7 @@ class AboutActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         mBind = DataBindingUtil.setContentView(this, R.layout.about_activity)
+        applySystemBarInsets()
         mBind.lifecycleOwner = this
         mBind.executePendingBindings()
 
@@ -39,7 +41,7 @@ class AboutActivity : AppCompatActivity() {
         }
 
         mBind.aboutTopCloseButton.setOnClickListener {
-            onBackPressed()
+            onBackPressedDispatcher.onBackPressed()
         }
 
         //mBind.aboutFoundingTextView.text = getString(R.string.founding)

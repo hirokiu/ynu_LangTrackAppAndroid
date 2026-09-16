@@ -1,5 +1,6 @@
 package com.alchembright.dev.langtrackapp.screen.contact
 
+import com.alchembright.dev.langtrackapp.util.applySystemBarInsets
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -31,6 +32,7 @@ class ContactActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBind = DataBindingUtil.setContentView(this, R.layout.contact_activity)
+        applySystemBarInsets()
         mBind.lifecycleOwner = this
         mBind.executePendingBindings()
 
@@ -61,7 +63,7 @@ class ContactActivity : AppCompatActivity() {
                 .asUri().openInBrowser(this)
         }
         mBind.contactTopCloseButton.setOnClickListener {
-            onBackPressed()
+            onBackPressedDispatcher.onBackPressed()
         }
         setContactInfo()
     }

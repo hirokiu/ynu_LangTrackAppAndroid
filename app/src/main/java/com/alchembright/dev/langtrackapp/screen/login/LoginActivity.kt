@@ -11,6 +11,7 @@ package com.alchembright.dev.langtrackapp.screen.login
 * University of York
 * */
 
+import com.alchembright.dev.langtrackapp.util.applySystemBarInsets
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -19,7 +20,7 @@ import android.util.Patterns
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.messaging.FirebaseMessaging
 //import kotlinx.android.synthetic.main.login_activity.*
@@ -38,8 +39,9 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         mBind = DataBindingUtil.setContentView(this,R.layout.login_activity)
+        applySystemBarInsets()
 
-        viewModel = ViewModelProviders.of(this,
+        viewModel = ViewModelProvider(this,
             LoginViewModelFactory(this)
         ).get(LoginViewModel::class.java)
 
@@ -121,7 +123,7 @@ class LoginActivity : AppCompatActivity() {
                         viewModel.putDeviceToken()
                         subscribeToTopic(userName)
                     }
-                    onBackPressed()
+                    onBackPressedDispatcher.onBackPressed()
                 }else{
                     Toast.makeText(this@LoginActivity,
                         getString(R.string.authenticationFailed),

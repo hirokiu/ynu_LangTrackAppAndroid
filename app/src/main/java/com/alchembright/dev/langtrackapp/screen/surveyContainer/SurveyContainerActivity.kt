@@ -13,12 +13,13 @@ package com.alchembright.dev.langtrackapp.screen.surveyContainer
 * University of York
 * */
 
+import com.alchembright.dev.langtrackapp.util.applySystemBarInsets
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 //import kotlinx.android.synthetic.main.login_activity.*
 //import kotlinx.android.synthetic.main.survey_container_activity.*
 import com.alchembright.dev.langtrackapp.R
@@ -71,10 +72,14 @@ class SurveyContainerActivity : AppCompatActivity(),
         inTestMode = intent.getBooleanExtra(IN_TEST_MODE, false)
 
         mBind = DataBindingUtil.setContentView(this, R.layout.survey_container_activity)
+        applySystemBarInsets()
+        onBackPressedDispatcher.addCallback(this, object : androidx.activity.OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() = confirmCloseSurvey()
+        })
         mBind.lifecycleOwner = this
         mBind.executePendingBindings()
 
-        viewModel = ViewModelProviders.of(this,
+        viewModel = ViewModelProvider(this,
             SurveyContainerViewModelFactory(this)
         ).get(SurveyContainerViewModel::class.java)
         mBind.viewModel = viewModel
@@ -97,7 +102,7 @@ class SurveyContainerActivity : AppCompatActivity(),
         }
     }
 
-    override fun onBackPressed() {
+    private fun confirmCloseSurvey() {
         if (currentPage.type == HEADER_VIEW){
             closeTheSurvey()
         }else {
@@ -149,7 +154,7 @@ class SurveyContainerActivity : AppCompatActivity(),
         )
         alertPopup.setCompleteListener(object : OnBoolPopupReturnListener{
             override fun popupReturn(value: Boolean) {
-                onBackPressed()
+                confirmCloseSurvey()
                 //TODO: send info to backend
             }
         })

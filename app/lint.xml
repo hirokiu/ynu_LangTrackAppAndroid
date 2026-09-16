@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lint>
+    <!-- Existing translations are partial; Android intentionally falls back to English.
+         Keep these visible as warnings while runtime/API errors remain build failures. -->
+    <issue id="MissingTranslation" severity="warning" />
+</lint>

@@ -3,9 +3,9 @@
     <string name="Close">Kapat</string>
     <string name="empty_list_info">Burası boştu…\nHumlabbet size bir anket gönderdiğinde, burada görünecek</string>
     <string name="server_fail_info">Sunucuyla iletişim yok</string>
-    <string name="mail_subject">Concerning Lang-Track-App</string>
-    <string name="mail_reserch_body">-Here you can write to the researchers for Lang-Track-App-</string>
-    <string name="mail_tech_body">-Here you can write to the developers for Lang-Track-App-</string>
+    <string name="mail_subject">Concerning KIROKUN</string>
+    <string name="mail_reserch_body">-Here you can write to the researchers for KIROKUN-</string>
+    <string name="mail_tech_body">-Here you can write to the developers for KIROKUN-</string>
     <string name="reserchText1">Teknik sorunlarınız varsa, Stephan Björck ile iletişime geçin.\nstephan.bjorck@humlab.lu.se\n\nAnketlerin içeriği hakkında sorularınız veya yorumlarınız varsa, Henriette Arndt\'a e-posta gönderin.\nhenriette.arndt@humlab.lu.se</string>
 
     <string name="log_out">Çıkış yap</string>
@@ -22,9 +22,9 @@
     <string name="timeLeftMinutes">Kalan süre: %2d dakika</string>
     <string name="hour">saat</string>
     <string name="hours">saat</string>
-    <string name="timeLeftHourAndOneMinute">Time left: %2d %s and %1d minute</string>
-    <string name="timeLeftHourAndMinute">Time left: %2d %s and %1d minutes</string>
-    <string name="timeLeftHourAndMinutes">Time left: %2d %s and %2d minutes</string>
+    <string name="timeLeftHourAndOneMinute">Time left: %1$2d %2$s and %3$1d minute</string>
+    <string name="timeLeftHourAndMinute">Time left: %1$2d %2$s and %3$1d minutes</string>
+    <string name="timeLeftHourAndMinutes">Time left: %1$2d %2$s and %3$2d minutes</string>
     <string name="surveyToAnswer">Cevaplanacak anket</string>
     <string name="timeLeftOneMinute">Time left: %1d minute</string>
     <string name="answered">Cevaplanan:</string>
@@ -42,8 +42,8 @@
     <string name="oneHour">%d hour</string>
     <string name="manyHours">%d hours</string>
     <string name="numberOfMinutes">%d minutes</string>
-    <string name="numberOfHourAndMinutes">%d hour and %d minutes</string>
-    <string name="numberOfHoursAndMinutes">%d hours and %d minutes</string>
+    <string name="numberOfHourAndMinutes">%1$d hour and %2$d minutes</string>
+    <string name="numberOfHoursAndMinutes">%1$d hours and %2$d minutes</string>
     <string name="noDuration">0 hours and 0 minutes</string>
     <string name="next">Sonraki</string>
     <string name="previous">Önceki</string>
@@ -90,5 +90,5 @@
     <string name="and">ve</string>
     <string name="survey_expired">Anketin süresi doldu</string>
     <string name="info">Bilgi</string>
-    <string name="youHaveAnsweredWithFormate">Size gönderilen %s anketin %s ’sini yanıtladınız.</string>
+    <string name="youHaveAnsweredWithFormate">Size gönderilen %1$s anketin %2$s ’sini yanıtladınız.</string>
 </resources>

@@ -18,7 +18,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 //import kotlinx.android.synthetic.main.header_fragment.view.*
 import com.alchembright.dev.langtrackapp.R
 import com.alchembright.dev.langtrackapp.data.model.Question
@@ -50,7 +50,7 @@ class HeaderFragment : Fragment(){
         binding = DataBindingUtil.inflate(inflater, R.layout.header_fragment, container,false)
         binding.lifecycleOwner = this
         binding.executePendingBindings()
-        viewModel = ViewModelProviders.of(this,
+        viewModel = ViewModelProvider(this,
             SurveyContainerViewModelFactory(binding.root.context)
         ).get(SurveyContainerViewModel::class.java)
         val v = binding.root

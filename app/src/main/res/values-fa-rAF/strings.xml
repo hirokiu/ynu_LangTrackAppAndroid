@@ -3,9 +3,9 @@
     <string name="Close">ببندید</string>
     <string name="empty_list_info">اینجا خالی است\nوقتی Humlabbet (آزمایشگاۀ علوم انسانی) یک پرسشنامه را برای شما اختصاص می دهد، شما آن را در اینجا خواهید دید.</string>
     <string name="server_fail_info">بدون تماس با سرور</string>
-    <string name="mail_subject">Concerning Lang-Track-App</string>
-    <string name="mail_reserch_body">-Here you can write to the researchers for Lang-Track-App-</string>
-    <string name="mail_tech_body">-Here you can write to the developers for Lang-Track-App-</string>
+    <string name="mail_subject">Concerning KIROKUN</string>
+    <string name="mail_reserch_body">-Here you can write to the researchers for KIROKUN-</string>
+    <string name="mail_tech_body">-Here you can write to the developers for KIROKUN-</string>
     <string name="reserchText1">در صورتی که مشکل فنی دارید با استفان بیورک تماس بگیرید.stephan.bjorck@humlab.lu.se\nدر صورتی که درباره محتوای فرم ها سوال و یا نظری دارید از طریق ایمیل با هنریت آرندت تماس بگیرید.\nhenriette.arndt@humlab.lu.se</string>
 
     <string name="log_out">از سیستم خارج شوید</string>
@@ -22,9 +22,9 @@
     <string name="timeLeftMinutes">وقت باقی مانده: %2d دقیقه می باشد</string>
     <string name="hour">ساعت</string>
     <string name="hours">ساعت ها</string>
-    <string name="timeLeftHourAndOneMinute">Time left: %2d %s and %1d minute</string>
-    <string name="timeLeftHourAndMinute">Time left: %2d %s and %1d minutes</string>
-    <string name="timeLeftHourAndMinutes">Time left: %2d %s and %2d minutes</string>
+    <string name="timeLeftHourAndOneMinute">Time left: %1$2d %2$s and %3$1d minute</string>
+    <string name="timeLeftHourAndMinute">Time left: %1$2d %2$s and %3$1d minutes</string>
+    <string name="timeLeftHourAndMinutes">Time left: %1$2d %2$s and %3$2d minutes</string>
     <string name="surveyToAnswer">پرسشنامه برای جواب گفتن</string>
     <string name="timeLeftOneMinute">Time left: %1d minute</string>
     <string name="answered">پاسخ داده شده</string>
@@ -41,8 +41,8 @@
     <string name="oneHour">%d hour</string>
     <string name="manyHours">%d hours</string>
     <string name="numberOfMinutes">%d minutes</string>
-    <string name="numberOfHourAndMinutes">%d hour and %d minutes</string>
-    <string name="numberOfHoursAndMinutes">%d hours and %d minutes</string>
+    <string name="numberOfHourAndMinutes">%1$d hour and %2$d minutes</string>
+    <string name="numberOfHoursAndMinutes">%1$d hours and %2$d minutes</string>
     <string name="noDuration">0 hours and 0 minutes</string>
     <string name="next">بعدی</string>
     <string name="previous">قبلی</string>
@@ -90,5 +90,5 @@
     <string name="survey_expired">نظرسنجی منقضی شد</string>
     <string name="published">نشر شده:</string>
     <string name="info">اطلاعات</string>
-    <string name="youHaveAnsweredWithFormate">شما به %s پرسشنامه از %s پرسشنامه اختصاصی خود پاسخ داده اید.</string>
+    <string name="youHaveAnsweredWithFormate">شما به %1$s پرسشنامه از %2$s پرسشنامه اختصاصی خود پاسخ داده اید.</string>
 </resources>

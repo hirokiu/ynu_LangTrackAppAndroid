@@ -76,7 +76,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.24000001"
-            app:srcCompat="@drawable/lunds_universitet_small" />
+            app:srcCompat="@drawable/kirokun_logo" />
 
         <TextView
             android:id="@+id/headerTextTextView"

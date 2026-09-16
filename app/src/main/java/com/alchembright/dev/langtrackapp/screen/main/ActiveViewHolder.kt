@@ -43,7 +43,7 @@ class ActiveViewHolder(theItemView: View,
         mainHandler.post(repeatUpdatingText)
     }
 
-    fun bind(item: Assignment, pos: Int, listener: OnExpiredListener){
+    fun bind(item: Assignment, listener: OnExpiredListener){
         this.expiryListener = listener
         this.item = item
         task.text = task.context.getString(R.string.surveyToAnswer)
@@ -74,7 +74,7 @@ class ActiveViewHolder(theItemView: View,
                 }
 
                 if (days > 0){
-                    date.text = "%s %s %s %s %s %s %s %s".format(
+                    date.text = listOf(
                         date.context.getString(R.string.timeLeft),
                         days.toString(),
                         dayString,
@@ -82,19 +82,19 @@ class ActiveViewHolder(theItemView: View,
                         hourString,
                         date.context.getString(R.string.and),
                         minutes.toString(),
-                        minuteString)
+                        minuteString).joinToString(" ")
                 }else if (hours > 0){
-                    date.text = "%s %s %s %s %s %s".format(
+                    date.text = listOf(
                         date.context.getString(R.string.timeLeft),
                         hours.toString(),
                         hourString,
                         date.context.getString(R.string.and),
                         minutes.toString(),
-                        minuteString)
-                }else{date.text = "%s %s %s".format(
+                        minuteString).joinToString(" ")
+                }else{date.text = listOf(
                     date.context.getString(R.string.timeLeft),
                     minutes.toString(),
-                    minuteString)
+                    minuteString).joinToString(" ")
                 }
             }else{
                 expiryListener.assignmentExpired()

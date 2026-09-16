@@ -3,14 +3,14 @@
     <string name="Close">إغلاق</string>
     <string name="empty_list_info">\"لايوجد أي شيء هنا،  عندما يكلفك مختبر الإنسانيات باستبيان، ستراه هنا.\"</string>
     <string name="server_fail_info">No contact with server</string>
-    <string name="mail_subject">Concerning Lang-Track-App</string>
-    <string name="mail_reserch_body">-Here you can write to the researchers for Lang-Track-App-</string>
-    <string name="mail_tech_body">-Here you can write to the developers for Lang-Track-App-</string>
+    <string name="mail_subject">Concerning KIROKUN</string>
+    <string name="mail_reserch_body">-Here you can write to the researchers for KIROKUN-</string>
+    <string name="mail_tech_body">-Here you can write to the developers for KIROKUN-</string>
     <string name="reserchText1">إذا كنت تواجه أي صعوبات فنية ، فيرجى الاتصال بـ: stephan.bjorck@humlab.lu.se إذا كانت لديك أسئلة أو تعليقات حول محتوى الاستبيان ، فيرجى إرسال رسالة إلى: henriette.arndt@humlab.lu.se</string>
     <string name="log_out">خروج</string>
-    <string name="doYouWantToLogOut">هل تريد الخروج</string>
+    <string name="doYouWantToLogOut">هل تريد الخروج؟\n%1$s</string>
     <string name="cancel">إلغاء</string>
-    <string name="humanityLab">YNU-LTA Ver 0.1</string>
+    <string name="humanityLab">KIROKUN</string>
     <string name="loggedInAs">دخول باسم</string>
     <string name="logOut">خروج</string>
     <string name="contakt">اتصل</string>
@@ -20,9 +20,9 @@
     <string name="timeLeftMinutes">\"الوقت المتبقي: %2d الدقائق"</string>
     <string name="hour">ساعة</string>
     <string name="hours">ساعات</string>
-    <string name="timeLeftHourAndOneMinute">Time left: %2d %s and %1d minute</string>
-    <string name="timeLeftHourAndMinute">Time left: %2d %s and %1d minutes</string>
-    <string name="timeLeftHourAndMinutes">Time left: %2d %s and %2d minutes</string>
+    <string name="timeLeftHourAndOneMinute">Time left: %1$2d %2$s and %3$1d minute</string>
+    <string name="timeLeftHourAndMinute">Time left: %1$2d %2$s and %3$1d minutes</string>
+    <string name="timeLeftHourAndMinutes">Time left: %1$2d %2$s and %3$2d minutes</string>
     <string name="surveyToAnswer">استبيان بحاجة للإجابة</string>
     <string name="timeLeftOneMinute">Time left: %1d minute</string>
     <string name="answered">تمت الإجابة</string>
@@ -40,8 +40,8 @@
     <string name="oneHour">%d hour</string>
     <string name="manyHours">%d hours</string>
     <string name="numberOfMinutes">%d minutes</string>
-    <string name="numberOfHourAndMinutes">%d hour and %d minutes</string>
-    <string name="numberOfHoursAndMinutes">%d hours and %d minutes</string>
+    <string name="numberOfHourAndMinutes">%1$d hour and %2$d minutes</string>
+    <string name="numberOfHoursAndMinutes">%1$d hours and %2$d minutes</string>
     <string name="noDuration">0 ساعة و 0 دقيقة</string>
     <string name="next">التالي</string>
     <string name="previous">سابق</string>
@@ -88,5 +88,5 @@
     <string name="timeLeft">الوقت المتبقي:</string>
     <string name="survey_expired">انتهت صلاحية الاستطلاع</string>
     <string name="info">معلومة</string>
-    <string name="youHaveAnsweredWithFormate">لقد أجبت على %s من %s استطلاعاتك المخصصة.</string>
+    <string name="youHaveAnsweredWithFormate">لقد أجبت على %1$s من %2$s استطلاعاتك المخصصة.</string>
 </resources>

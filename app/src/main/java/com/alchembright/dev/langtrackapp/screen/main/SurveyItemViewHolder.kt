@@ -34,7 +34,7 @@ class SurveyItemViewHolder(theItemView: View,
         theItemView.setOnClickListener { onRowClickedListener.rowClicked(item) }
     }
 
-    fun bind(item: Assignment, pos: Int){
+    fun bind(item: Assignment){
         this.item = item
         task.text = this.item.survey.title
         date.text = item.publishAt.toDate()?.formatToReadable(date.context.getString(R.string.dateFormat)) ?: date.context.getString(R.string.noDate)

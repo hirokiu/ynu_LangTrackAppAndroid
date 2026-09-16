@@ -2,8 +2,8 @@
 <resources>
     <string name="empty_list_info">Här var det tomt…\nNär Humlabbet tilldelar dig en enkät kommer den att hamna här</string>
     <string name="server_fail_info">Ingen kontakt med server</string>
-    <string name="mail_subject">Angående Lang-Track-App</string>
-    <string name="mail_reserch_body">-Här kan du skriva till forskarna bakom Lang-Track-App-</string>
+    <string name="mail_subject">Angående KIROKUN</string>
+    <string name="mail_reserch_body">-Här kan du skriva till forskarna bakom KIROKUN-</string>
     <string name="reserchText1">Om du har tekniska problem, kontakta Stephan Björck.\nstephan.bjorck@humlab.lu.se\n\nOm du har frågor eller kommentarer om innehållet i enkäterna, mejla Henriette Arndt.\nhenriette.arndt@humlab.lu.se</string>
     <string name="click_here">Klicka här</string>
     <string name="log_out">Logga ut</string>
@@ -20,11 +20,11 @@
     <string name="timeLeftMinutes">Tid kvar: %2d minuter</string>
     <string name="hour">timme</string>
     <string name="hours">timmar</string>
-    <string name="timeLeftHourAndMinute">Tid kvar: %2d %s och %1d minuter</string>
-    <string name="timeLeftHourAndMinutes">Tid kvar: %2d %s och %2d minuter</string>
+    <string name="timeLeftHourAndMinute">Tid kvar: %1$2d %2$s och %3$1d minuter</string>
+    <string name="timeLeftHourAndMinutes">Tid kvar: %1$2d %2$s och %3$2d minuter</string>
     <string name="surveyToAnswer">Enkät att besvara</string>
     <string name="timeLeftOneMinute">Tid kvar: %1d minut</string>
-    <string name="timeLeftHourAndOneMinute">Tid kvar: %2d %s och %1d minut</string>
+    <string name="timeLeftHourAndOneMinute">Tid kvar: %1$2d %2$s och %3$1d minut</string>
     <string name="answered">Besvarad</string>
     <string name="unanswered">Obesvarad</string>
     <string name="noDate">inget datum</string>
@@ -40,8 +40,8 @@
     <string name="oneHour">%d timme</string>
     <string name="manyHours">%d timmar</string>
     <string name="numberOfMinutes">%d minuter</string>
-    <string name="numberOfHourAndMinutes">%d timme och %d minuter</string>
-    <string name="numberOfHoursAndMinutes">%d timmar och %d minuter</string>
+    <string name="numberOfHourAndMinutes">%1$d timme och %2$d minuter</string>
+    <string name="numberOfHoursAndMinutes">%1$d timmar och %2$d minuter</string>
     <string name="noDuration">0 timmar och 0 minuter</string>
     <string name="next">Nästa</string>
     <string name="previous">Föregående</string>
@@ -63,7 +63,7 @@
     <string name="password">Lösenord</string>
     <string name="logIn">Logga in</string>
     <string name="menuProjectAbout">Vi har utvecklat Lang-Track-App för att utforska när, var och hur ofta människor har kontakt med främmade språk i vardagen. Detta är viktigt för att bättre förstå utmaningarna för språkinlärning utanför klassrummet.\n\nProjektet är ett samarbete mellan Språk– och Litteraturcentrum och Lunds Universitets Humanistlaboratorium.</string>
-    <string name="mail_tech_body">-Här kan du skriva till utvecklarna bakom Lang-Track-App-</string>
+    <string name="mail_tech_body">-Här kan du skriva till utvecklarna bakom KIROKUN-</string>
     <string name="links">Länkar</string>
     <string name="lund_university">Lunds Universitet</string>
     <string name="marianneInfo">Marianne Gullberg, Professor i psykolingvistik, Språk- och Litteraturcentrum</string>
@@ -89,5 +89,5 @@
     <string name="and">och</string>
     <string name="survey_expired">Enkät utgången</string>
     <string name="info">Info</string>
-    <string name="youHaveAnsweredWithFormate">Du har besvarat %s av dina %s tilldelade enkäter</string>
+    <string name="youHaveAnsweredWithFormate">Du har besvarat %1$s av dina %2$s tilldelade enkäter</string>
 </resources>

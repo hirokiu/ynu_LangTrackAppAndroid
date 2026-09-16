@@ -11,6 +11,7 @@ package com.alchembright.dev.langtrackapp.screen.splash
 * University of York
 * */
 
+import com.alchembright.dev.langtrackapp.util.applySystemBarInsets
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -33,6 +34,7 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash_activity)
+        applySystemBarInsets()
 
         /*if extras is not null, it contains a notification - save to firebase
         //this is how you handle notification if app is in background and user clicked notification

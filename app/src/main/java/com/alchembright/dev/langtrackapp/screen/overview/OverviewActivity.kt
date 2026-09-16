@@ -1,11 +1,12 @@
 package com.alchembright.dev.langtrackapp.screen.overview
 
+import com.alchembright.dev.langtrackapp.util.applySystemBarInsets
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.alchembright.dev.langtrackapp.R
 import com.alchembright.dev.langtrackapp.data.model.Answer
 import com.alchembright.dev.langtrackapp.data.model.Assignment
@@ -36,9 +37,10 @@ class OverviewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.overview_activity)
+        applySystemBarInsets()
         binding.lifecycleOwner = this
         binding.executePendingBindings()
-        viewModel = ViewModelProviders.of(this,
+        viewModel = ViewModelProvider(this,
             OverviewViewModelFactory(this)
         ).get(OverviewViewModel::class.java)
         theAssignment = intent.getParcelableExtra(ASSIGNMENT)
@@ -53,7 +55,7 @@ class OverviewActivity : AppCompatActivity() {
         binding.overviewTopPublishedTextView.text = theAssignment?.publishAt?.toDate()?.formatToReadable(getString(R.string.dateFormat)) ?: getString(R.string.noDate)
         binding.overviewTopExpiredTextView.text = theAssignment?.dataset?.updatedAt?.toDate()?.formatToReadable(getString(R.string.dateFormat)) ?: getString(R.string.noDate)
         binding.overviewTopOkButton.setOnClickListener {
-            onBackPressed()
+            onBackPressedDispatcher.onBackPressed()
         }
     }
 

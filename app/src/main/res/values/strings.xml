@@ -7,16 +7,16 @@
     <string name="Open" translatable="false">Open</string>
     <string name="Close">Close</string>
     <string name="server_fail_info">No contact with server</string>
-    <string name="mail_subject">Concerning the Lang Track App</string>
-    <string name="mail_reserch_body">-Here you can write to the researchers for Lang Track App-</string>
-    <string name="mail_tech_body">-Here you can write to the developers for Lang Track App-</string>
+    <string name="mail_subject">Concerning the KIROKUN</string>
+    <string name="mail_reserch_body">-Here you can write to the researchers for KIROKUN-</string>
+    <string name="mail_tech_body">-Here you can write to the developers for KIROKUN-</string>
     <string name="reserchText1">"If you are experiencing any technical issues or have any questions/comments about the content of the survey, please email; ltajapan2024@gmail.com "</string>
 
     <string name="log_out">Log out</string>
-    <string name="doYouWantToLogOut">When Humlab assigns you a survey, you will see it here.</string>
+    <string name="doYouWantToLogOut">Do you want to log out?\n%1$s</string>
     <string name="cancel">Cancel</string>
     <string name="langTrackApp" translatable="false">KIROKUN (キロクン)</string>
-    <string name="humanityLab">YNU-LTA Ver 0.1</string>
+    <string name="humanityLab">KIROKUN</string>
     <string name="menu">Menu</string>
     <string name="loggedInAs">Logged in as</string>
     <string name="logOut">Log out</string>
@@ -27,9 +27,9 @@
     <string name="timeLeftMinutes">Time left: %2d minutes</string>
     <string name="hour">hour</string>
     <string name="hours">hours</string>
-    <string name="timeLeftHourAndOneMinute">Time left: %2d %s and %1d minute</string>
-    <string name="timeLeftHourAndMinute">Time left: %2d %s and %1d minutes</string>
-    <string name="timeLeftHourAndMinutes">Time left: %2d %s and %2d minutes</string>
+    <string name="timeLeftHourAndOneMinute">Time left: %1$2d %2$s and %3$1d minute</string>
+    <string name="timeLeftHourAndMinute">Time left: %1$2d %2$s and %3$1d minutes</string>
+    <string name="timeLeftHourAndMinutes">Time left: %1$2d %2$s and %3$2d minutes</string>
     <string name="surveyToAnswer">Survey to answer</string>
     <string name="timeLeftOneMinute">Time left: %1d minute</string>
     <string name="answered">Answered</string>
@@ -47,8 +47,8 @@
     <string name="oneHour">%d hour</string>
     <string name="manyHours">%d hours</string>
     <string name="numberOfMinutes">%d minutes</string>
-    <string name="numberOfHourAndMinutes">%d hour and %d minutes</string>
-    <string name="numberOfHoursAndMinutes">%d hours and %d minutes</string>
+    <string name="numberOfHourAndMinutes">%1$d hour and %2$d minutes</string>
+    <string name="numberOfHoursAndMinutes">%1$d hours and %2$d minutes</string>
     <string name="noDuration">0 hours and 0 minutes</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
@@ -92,9 +92,9 @@
     <string name="minute">minute</string>
     <string name="day">day</string>
     <string name="days">days</string>
-    <string name="timeLeft">The project is a collaboration between the Lund University Centre for Languages and Literature and Lund University Humanities Lab.</string>
+    <string name="timeLeft">Time left:</string>
     <string name="and">and</string>
     <string name="survey_expired">Survey expired</string>
-    <string name="youHaveAnsweredWithFormate">You have answered %s of your %s assigned surveys.</string>
+    <string name="youHaveAnsweredWithFormate">You have answered %1$s of your %2$s assigned surveys.</string>
     <string name="empty_list_info">"There's nothing here... "</string>
 </resources>

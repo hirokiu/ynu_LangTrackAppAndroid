@@ -101,7 +101,7 @@ class OpenEndedTextResponsesFragment : Fragment(){
     private fun hideKeyboard() {
         if (activity != null) {
             val imm =
-                activity!!.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+                requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
             val view = binding.openEditText
             imm.hideSoftInputFromWindow(view.windowToken, 0)
         }

@@ -24,6 +24,7 @@ University of York
 * lösenord: 123456
 * */
 
+import com.alchembright.dev.langtrackapp.util.applySystemBarInsets
 import android.Manifest.permission.POST_NOTIFICATIONS
 import android.content.Context
 import android.content.Intent
@@ -39,7 +40,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -85,17 +86,29 @@ class MainActivity : AppCompatActivity() {
                 .build()
         )
 
-        if (ContextCompat.checkSelfPermission(this, POST_NOTIFICATIONS) == PackageManager.PERMISSION_DENIED) {
-            ActivityCompat.requestPermissions(this, arrayOf(POST_NOTIFICATIONS), 112);
-        }
-
         super.onCreate(savedInstanceState)
+        if (android.os.Build.VERSION.SDK_INT >= 33 &&
+            ContextCompat.checkSelfPermission(this, POST_NOTIFICATIONS) == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(this, arrayOf(POST_NOTIFICATIONS), 112)
+        }
         mBind = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        applySystemBarInsets()
+        onBackPressedDispatcher.addCallback(this, object : androidx.activity.OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (mBind.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    mBind.drawerLayout.closeDrawer(GravityCompat.START)
+                } else {
+                    isEnabled = false
+                    onBackPressedDispatcher.onBackPressed()
+                    isEnabled = true
+                }
+            }
+        })
         mBind.lifecycleOwner = this
         mBind.executePendingBindings()
         mAuth = FirebaseAuth.getInstance()
 
-        viewModel = ViewModelProviders.of(this,
+        viewModel = ViewModelProvider(this,
             MainViewModelFactory(this)
         ).get(MainViewModel::class.java)
         mBind.viewModel = viewModel
@@ -313,20 +326,12 @@ class MainActivity : AppCompatActivity() {
         )
         alertPopup.setCompleteListener(object : OnBoolPopupReturnListener{
             override fun popupReturn(value: Boolean) {
-                onBackPressed()
+                onBackPressedDispatcher.onBackPressed()
             }
         })
         alertPopup.show(alertFm, "surveyInfoPopup")
     }
 
-    override fun onBackPressed() {
-        //close menu if open
-        if (mBind.drawerLayout.isDrawerOpen(GravityCompat.START)){
-            mBind.drawerLayout.closeDrawer(GravityCompat.START)
-        }else {
-            super.onBackPressed()
-        }
-    }
 
     companion object {
         fun start(context: Context){
