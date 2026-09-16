@@ -4,7 +4,7 @@ KIROKUN is a Japanese research participant app derived from Lang-Track-App.
 
 ## Development
 
-Use JDK 17 and Android SDK 37 (Android 17), with build-tools 36.0.0.
+Use JDK 17 and Android SDK 37 (Android 17), with build-tools 36.0.0. The project selects Java 17 via Gradle toolchains. Android Studio Quail 4 (2026.1.4) or newer is required for AGP 9.4; older installed Studio versions cannot synchronize this project. Command-line builds are verified.
 Set `sdk.dir` in local.properties to your Android SDK location.
 
 ```sh

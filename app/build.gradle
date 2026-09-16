@@ -37,6 +37,10 @@ android {
     }
 }
 
+kotlin {
+    jvmToolchain(17)
+}
+
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-parcelize-runtime:2.2.10"
     implementation fileTree(dir: 'libs', include: ['*.jar'])
