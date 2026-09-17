@@ -146,7 +146,7 @@
                     android:layout_height="40dp"
                     android:layout_marginEnd="10dp"
                     android:tag="5"
-                    android:text="N/A"
+                    android:text="@string/not_available"
                     android:textColor="@color/lta_grey"
                     android:textColorLink="@color/lta_blue"
                     app:layout_constraintBottom_toBottomOf="parent"

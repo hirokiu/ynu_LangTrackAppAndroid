@@ -148,8 +148,8 @@ class SurveyContainerActivity : AppCompatActivity(),
         val width = (mBind.surveyContainerLayout.measuredWidth * 0.75).toInt()
         val alertPopup = PopupAlert.show(
             width = width,
-            title = "Något gick fel!",
-            textViewText = "Det går tyvärr inte att visa detta formulär.\nMeddelande skickat till humanist lab...",
+            title = getString(R.string.error_title),
+            textViewText = getString(R.string.survey_display_error),
             placecenter = true
         )
         alertPopup.setCompleteListener(object : OnBoolPopupReturnListener{

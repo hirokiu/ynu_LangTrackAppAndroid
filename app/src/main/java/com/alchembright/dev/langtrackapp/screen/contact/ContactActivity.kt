@@ -45,23 +45,6 @@ class ContactActivity : AppCompatActivity() {
 
         //mBind.researchTextView.text = getString(R.string.reserchText1)
 
-        mBind.contactLtaLinkTextView.paintFlags = Paint.UNDERLINE_TEXT_FLAG
-        mBind.contactLtaLinkTextView.setOnClickListener {
-            "https://portal.research.lu.se/portal/en/projects/the-langtrackapp-studying-exposure-to-and-use-of-a-new-language-using-smartphone-technology(4e734940-981f-4dd0-841a-eb6ac760af0c).html"
-                .asUri().openInBrowser(this)
-        }
-
-        mBind.contactHumLinkTextView.paintFlags = Paint.UNDERLINE_TEXT_FLAG
-        mBind.contactHumLinkTextView.setOnClickListener {
-            "https://www.humlab.lu.se/en/"
-                .asUri().openInBrowser(this)
-        }
-
-        mBind.contactLuLinkTextView.paintFlags = Paint.UNDERLINE_TEXT_FLAG
-        mBind.contactLuLinkTextView.setOnClickListener {
-            "https://www.lu.se/"
-                .asUri().openInBrowser(this)
-        }
         mBind.contactTopCloseButton.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
@@ -74,7 +57,7 @@ class ContactActivity : AppCompatActivity() {
         viewModel.getContactInfo { result ->
             for (i in result.indices) {
                 val contact = result[i]
-                tempText += "${contact.text?.get(getLanguageCode())}\n${contact.email}"
+                tempText += "${if (androidx.core.os.ConfigurationCompat.getLocales(resources.configuration)[0]?.language == "ja") getString(R.string.contact_description) else contact.text?.get(getLanguageCode()) ?: getString(R.string.contact_description)}\n${contact.email}"
                 if (i != result.count() - 1){
                     tempText += "\n\n"
                 }

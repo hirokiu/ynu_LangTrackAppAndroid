@@ -4,7 +4,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="loading" translatable="false">Laddar värde</string>
-    <string name="Open" translatable="false">Open</string>
+    <string name="Open">Open</string>
     <string name="Close">Close</string>
     <string name="server_fail_info">No contact with server</string>
     <string name="mail_subject">Concerning the KIROKUN</string>
@@ -60,7 +60,7 @@
     <string name="minutes">Minutes</string>
     <string name="doYouWantToCloseTheSurvey">Do you want to close the survey and return to the start page?\nThe answers will not be saved.</string>
     <string name="closeTheSurvey">Close survey</string>
-    <string name="langTrackAppInfo1">The Lang Track App App is an app developed by the University of York, Centre for Advanced Studies in Language and Education.\n\nLog in with the username and password assigned to you</string>
+    <string name="langTrackAppInfo1">KIROKUN is an app for participating in research through daily records and surveys.\n\nLog in with the username and password assigned to you</string>
     <string name="info">Info</string>
     <string name="enterCredentials">Please enter your username and password</string>
     <string name="authenticationFailed">Authentication failed.</string>
@@ -69,7 +69,7 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="logIn">Log in</string>
-    <string name="menuProjectAbout">We developed the Lang-Track-App to study when, where, and how often language learners are in contact with different foreign languages in everyday life. This crucial to improving our understanding of the challenges of language learning outside of classrooms.</string>
+    <string name="menuProjectAbout">We developed the KIROKUN app to study when, where, and how often language learners are in contact with different foreign languages in everyday life. This crucial to improving our understanding of the challenges of language learning outside of classrooms.</string>
     <string name="links">Links</string>
     <string name="lund_university">Lund University</string>
     <string name="marianneInfo">Zoe Handley, Senior Lecturer, Education Department, University of York</string>
@@ -97,4 +97,10 @@
     <string name="survey_expired">Survey expired</string>
     <string name="youHaveAnsweredWithFormate">You have answered %1$s of your %2$s assigned surveys.</string>
     <string name="empty_list_info">"There's nothing here... "</string>
+    <string name="version_label">Version: %1$s</string>
+    <string name="status_label">Status</string>
+    <string name="survey_display_error">This survey could not be displayed. Please try again later.</string>
+    <string name="contact_description">For technical issues or questions about the survey, please contact:</string>
+    <string name="error_title">Error</string>
+    <string name="not_available">N/A</string>
 </resources>

@@ -21,7 +21,7 @@ class TopViewItem @JvmOverloads constructor(
     }
 
     fun setText(assignment: Assignment){
-        binding.topViewStatusText.text = "Status"
+        binding.topViewStatusText.text = binding.root.context.getString(com.alchembright.dev.langtrackapp.R.string.status_label)
         //topViewAnsweredDateText.text = if (survey.answer != null) "Besvarad ${getDate(survey.respondeddate)}" else "Obesvarad"
         //topViewSentDateText.text = getDate(survey.date)//TODO: check date
         if (assignment.survey.answer != null){

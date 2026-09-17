@@ -15,7 +15,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowBackground">
-            @drawable/kirokun_splash
+            @drawable/kirokun_launch_background
         </item>
     </style>
 

@@ -24,6 +24,17 @@ class ApplicationSmokeTest {
         }
     }
 
+    @Test fun japaneseResourcesAndArgumentOrder() {
+        val context = androidx.test.platform.app.InstrumentationRegistry.getInstrumentation().targetContext
+        val configuration = android.content.res.Configuration(context.resources.configuration)
+        configuration.setLocale(java.util.Locale.JAPANESE)
+        val japanese = context.createConfigurationContext(configuration)
+        assertEquals("パスワード", japanese.getString(R.string.password))
+        assertEquals("全10件のアンケートのうち3件に回答しました。",
+            japanese.getString(R.string.youHaveAnsweredWithFormate, "3", "10"))
+        org.junit.Assert.assertTrue(japanese.getString(R.string.menuProjectAbout).contains("KIROKUN アプリ"))
+    }
+
     @Test fun answersSurviveParcelRoundTrip() {
         val original = Answer(type = "multi", index = 4,
             multipleChoiceAnswer = mutableListOf(0, 2), openEndedAnswer = "日本語")

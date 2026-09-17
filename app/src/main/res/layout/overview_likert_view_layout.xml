@@ -126,7 +126,7 @@
             android:layout_weight="1"
             android:clickable="false"
             android:tag="6"
-            android:text="N/A"
+            android:text="@string/not_available"
             android:textColor="@color/lta_grey" />-->
     </RadioGroup>
 
