@@ -13,3 +13,5 @@ protoビルドは既存版の更新用として同じアプリIDを維持する�
 次のdev版には独立Bundle ID/applicationIdとFirebase iOS/Androidアプリ登録が必要。公開済みdev Web設定はモバイル設定ファイルの代わりにはならない。旧ドメイン除去・新ログイン方式は共同研究者との方針確定後とする。
 
 リリース前にバージョン/ビルド番号を更新し、Androidは既存配布APKと署名証明書が一致することを確認。新コピーのdebug署名を配布用として採用しない。iOSは署名付きArchiveとTestFlightの実機確認を別途実施。ビルド成功は配信/通知成功を意味しない。
+
+検証：assembleProtoDebug、testProtoDebugUnitTest、assembleLegacyDebug成功。各生成BuildConfigでproto固定URLとlegacyの空設定を確認。実機の回答送信・通知・利用者への配布は未実施。
