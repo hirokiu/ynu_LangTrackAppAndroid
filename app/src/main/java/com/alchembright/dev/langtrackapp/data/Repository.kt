@@ -66,6 +66,12 @@ class Repository(val context: Context) {
     }
 
     private fun getUrl(listener: (result: String?) -> Unit) {
+        // A proto build never switches the shared Firebase URL used by existing apps.
+        val configured = com.alchembright.dev.langtrackapp.BuildConfig.API_BASE_URL
+        if (configured.isNotEmpty()) {
+            listener(configured)
+            return
+        }
         /*
          Getting the correct url frlom firebase realtime - prodUrl or stagingUrl
          */

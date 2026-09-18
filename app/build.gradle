@@ -17,6 +17,17 @@ android {
         versionName "1.1.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    flavorDimensions += "environment"
+    productFlavors {
+        legacy {
+            dimension "environment"
+            buildConfigField "String", "API_BASE_URL", '""'
+        }
+        proto {
+            dimension "environment"
+            buildConfigField "String", "API_BASE_URL", '"https://proto.kirokun.alchembright.com/api/"'
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
