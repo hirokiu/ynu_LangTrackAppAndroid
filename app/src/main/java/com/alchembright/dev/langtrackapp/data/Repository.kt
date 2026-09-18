@@ -45,8 +45,8 @@ class Repository(val context: Context) {
     //private val ltaUrl = "http://ht-lang-track.ht.lu.se:443/"
     var client = OkHttpClient()
     private var useStagingServer = false
-    val database = FirebaseDatabase.getInstance()
-    val dbRef = database.reference
+    val database by lazy { FirebaseDatabase.getInstance() }
+    val dbRef by lazy { database.reference }
 
 
     fun setCurrentUser(user: User){

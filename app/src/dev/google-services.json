@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "1058257017339",
+    "project_id": "kirokun-dev",
+    "storage_bucket": "kirokun-dev.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1058257017339:android:916751a92104427e32535e",
+        "android_client_info": {
+          "package_name": "com.alchembright.kirokun.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1058257017339-cben298idoeaj60t4m4kehnb4qgq9gr8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alchembright.kirokun.dev",
+            "certificate_hash": "77db2e473224b8e824f284908389c84890e772ce"
+          }
+        },
+        {
+          "client_id": "1058257017339-47crlrkgk449jgevqa1d81sp02f8ftsm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCAn9F_xQ0hCZJGhuEZm-1S-vfUpPgx94"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1058257017339-47crlrkgk449jgevqa1d81sp02f8ftsm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1058257017339-uutqh9t0lgegi19qob2n5jm85tv7gks5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.alchembright.kirokun.dev"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
