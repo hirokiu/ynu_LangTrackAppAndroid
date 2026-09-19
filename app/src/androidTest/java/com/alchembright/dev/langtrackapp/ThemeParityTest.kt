@@ -45,6 +45,15 @@ class ThemeParityTest {
             assignment.survey.questions!!.dropLast(1).forEach { current ->
                 scenario.onActivity { activity -> activity.nextQuestion(current) }
                 onView(withId(R.id.surveyHeading)).check(matches(isDisplayed()))
+                val next = assignment.survey.questions!!.firstOrNull { it.index == current.index + 1 }
+                val field = when (next?.type) {
+                    "likert" -> R.id.likertScaleRadioGroup
+                    "open" -> R.id.openEditText
+                    "single" -> R.id.singleMultipleAnswerContainer
+                    "multi" -> R.id.multipleRadioButtonContainer
+                    else -> null
+                }
+                if (field != null) onView(withId(field)).check(matches(isDisplayed()))
             }
             onView(withId(R.id.footerNextButton)).check(matches(isDisplayed()))
         }

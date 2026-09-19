@@ -1,19 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+<?xml version='1.0' encoding='utf-8'?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent" android:layout_height="match_parent">
         <com.google.android.material.button.MaterialButton
             android:id="@+id/timeDurationNextButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="25dp"
+            android:layout_marginBottom="8dp"
             android:padding="10dp"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
@@ -24,13 +18,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/timeDurationBackButton" />
-
         <com.google.android.material.button.MaterialButton
             android:id="@+id/timeDurationBackButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginBottom="25dp"
+            android:layout_marginBottom="8dp"
             android:padding="10dp"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
@@ -41,101 +34,99 @@
             app:layout_constraintEnd_toStartOf="@+id/timeDurationNextButton"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent" />
-
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/questionScroll"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="1dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginBottom="1dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/timeDurationNextButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/durationIcon"
-            app:layout_constraintVertical_bias="0.2">
-
-            <TextView
-                android:id="@+id/timeDurationTextTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="15dp"
-                android:text=""
-                android:textAlignment="center"
-                android:textColor="@color/lta_text"
-                android:textSize="17sp"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingEnd="15dp"
-                    android:text="@string/hours"
-                    android:textStyle="italic" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="15dp"
-                    android:text="@string/minutes"
-                    android:textStyle="italic" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingTop="0dp">
-
-                <NumberPicker
-                    android:id="@+id/number_picker_hour"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="0dp"
-                    android:paddingTop="0dp"
-                    android:theme="@style/NumberPickerText" />
-
-                <TextView
-                    android:layout_width="7dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="clip_horizontal|center_vertical"
-                    android:layout_marginBottom="4dp"
-                    android:gravity="center_vertical"
-                    android:text=":"
-                    android:textColor="@color/lta_text"
-                    android:textSize="35sp" />
-
-                <NumberPicker
-                    android:id="@+id/number_picker_minutes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="0dp"
-                    android:paddingTop="0dp"
-                    android:theme="@style/NumberPickerText" />
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/durationIcon"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:layout_constraintBottom_toTopOf="@+id/timeDurationNextButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.2"
-            app:srcCompat="@drawable/kirokun_question_duration"  />
+            app:layout_constraintBottom_toTopOf="@+id/timeDurationNextButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp">
+                <ImageView
+                    android:id="@+id/durationIcon"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    app:srcCompat="@drawable/kirokun_question_duration"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="16dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginBottom="1dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/timeDurationTextTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginEnd="15dp"
+                        android:text=""
+                        android:textAlignment="center"
+                        android:textColor="@color/lta_text"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingEnd="15dp"
+                            android:text="@string/hours"
+                            android:textStyle="italic" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="15dp"
+                            android:text="@string/minutes"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="0dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingTop="0dp">
+                        <NumberPicker
+                            android:id="@+id/number_picker_hour"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="0dp"
+                            android:paddingTop="0dp"
+                            android:theme="@style/NumberPickerText" />
+                        <TextView
+                            android:layout_width="7dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="clip_horizontal|center_vertical"
+                            android:layout_marginBottom="4dp"
+                            android:gravity="center_vertical"
+                            android:text=":"
+                            android:textColor="@color/lta_text"
+                            android:textSize="35sp" />
+                        <NumberPicker
+                            android:id="@+id/number_picker_minutes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="0dp"
+                            android:paddingTop="0dp"
+                            android:theme="@style/NumberPickerText" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

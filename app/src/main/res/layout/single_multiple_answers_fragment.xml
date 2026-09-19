@@ -1,19 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+<?xml version='1.0' encoding='utf-8'?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent" android:layout_height="match_parent">
         <com.google.android.material.button.MaterialButton
             android:id="@+id/singleMultipleAnswerNextButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="25dp"
+            android:layout_marginBottom="8dp"
             android:padding="10dp"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
@@ -24,13 +18,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/singleMultipleAnswerBackButton" />
-
         <com.google.android.material.button.MaterialButton
             android:id="@+id/singleMultipleAnswerBackButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginBottom="25dp"
+            android:layout_marginBottom="8dp"
             android:padding="10dp"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
@@ -41,103 +34,102 @@
             app:layout_constraintEnd_toStartOf="@+id/singleMultipleAnswerNextButton"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent" />
-
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/questionScroll"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginBottom="5dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/singleMultipleAnswerNextButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/singleIcon"
-            app:layout_constraintVertical_bias="0.2">
-
-            <TextView
-                android:id="@+id/singleMultipleAnswerTextTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="10dp"
-                android:text=""
-                android:textAlignment="center"
-                android:textColor="@color/lta_text"
-                android:textSize="17sp"
-                android:textStyle="bold" />
-
-            <View
-                android:id="@+id/singleIndicatorTop"
-                android:layout_width="match_parent"
-                android:layout_height="0.01dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="8dp"
-                android:background="@android:color/white"
-                android:stateListAnimator="@animator/top_indicator_elevation" />
-
-            <LinearLayout
-                android:layout_marginTop="2dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingStart="25dp"
-                android:paddingEnd="15dp">
-
-                <ScrollView
-                    android:id="@+id/singleMultipleAnswerScroll"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:scrollbars="none"
-                    android:overScrollMode="never">
-
-                    <RadioGroup
-                        android:id="@+id/singleMultipleAnswerContainer"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:paddingTop="10dp"
-                        android:paddingEnd="20dp">
-
-                        <RadioButton
-                            android:id="@+id/radioButton6"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="RadioButton" />
-
-                        <RadioButton
-                            android:id="@+id/radioButton7"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="RadioButton" />
-                    </RadioGroup>
-                </ScrollView>
-            </LinearLayout>
-            <View
-                android:id="@+id/singleIndicatorBottom"
-                android:layout_width="match_parent"
-                android:layout_height="0.1dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="25dp"
-                android:background="@android:color/white"
-                android:stateListAnimator="@animator/bottom_indicator_elevation" />
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/singleIcon"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:layout_constraintBottom_toTopOf="@+id/singleMultipleAnswerNextButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:fillViewport="true"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.2"
-            app:srcCompat="@drawable/kirokun_question_single"  />
-
+            app:layout_constraintBottom_toTopOf="@+id/singleMultipleAnswerNextButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp">
+                <ImageView
+                    android:id="@+id/singleIcon"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    app:srcCompat="@drawable/kirokun_question_single"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="16dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/singleMultipleAnswerTextTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="10dp"
+                        android:text=""
+                        android:textAlignment="center"
+                        android:textColor="@color/lta_text"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                    <View
+                        android:id="@+id/singleIndicatorTop"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.01dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@android:color/white"
+                        android:stateListAnimator="@animator/top_indicator_elevation" />
+                    <LinearLayout
+                        android:layout_marginTop="2dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingStart="25dp"
+                        android:paddingEnd="15dp">
+                        <ScrollView
+                            android:id="@+id/singleMultipleAnswerScroll"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scrollbars="none"
+                            android:overScrollMode="never">
+                            <RadioGroup
+                                android:id="@+id/singleMultipleAnswerContainer"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:paddingTop="10dp"
+                                android:paddingEnd="20dp">
+                                <RadioButton
+                                    android:id="@+id/radioButton6"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="RadioButton" />
+                                <RadioButton
+                                    android:id="@+id/radioButton7"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="RadioButton" />
+                            </RadioGroup>
+                        </ScrollView>
+                    </LinearLayout>
+                    <View
+                        android:id="@+id/singleIndicatorBottom"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="25dp"
+                        android:background="@android:color/white"
+                        android:stateListAnimator="@animator/bottom_indicator_elevation" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

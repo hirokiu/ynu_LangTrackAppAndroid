@@ -16,6 +16,7 @@ android {
         versionCode 3
         versionName "1.1.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArguments notClass: "com.alchembright.dev.langtrackapp.ManualSurveyPreview"
     }
     flavorDimensions += "environment"
     productFlavors {
