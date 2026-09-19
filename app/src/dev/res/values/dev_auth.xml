@@ -1,5 +1,5 @@
 <resources>
-<string name="dev_login_intro">Sign in with your development Google account. This screen checks access only; Survey answering is not connected yet.</string>
+<string name="dev_login_intro">Sign in with your development Google account to access Dev surveys.</string>
 <string name="dev_sign_out">Sign out</string>
 <string name="dev_retry_connection">Check connection again</string>
 <string name="dev_login_failed">Sign-in was cancelled or failed. Please try again.</string>

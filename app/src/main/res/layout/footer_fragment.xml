@@ -3,7 +3,7 @@
 <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:fillViewport="true">
 <TextView android:id="@+id/footerTextView" android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="8dp" android:textSize="17sp" android:textColor="@color/lta_text" android:textIsSelectable="true" />
 </ScrollView>
-<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:baselineAligned="false" android:gravity="center_vertical">
 <com.google.android.material.button.MaterialButton android:id="@+id/footerBackButton" style="@style/Widget.Material3.Button.OutlinedButton" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/previous" />
 <com.google.android.material.button.MaterialButton android:id="@+id/footerNextButton" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="8dp" android:text="@string/submit_answers" />
 </LinearLayout>

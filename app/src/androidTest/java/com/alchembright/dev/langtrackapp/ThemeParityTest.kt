@@ -55,8 +55,33 @@ class ThemeParityTest {
                     else -> null
                 }
                 if (field != null) onView(withId(field)).check(matches(isDisplayed()))
+                val nextButton = when (next?.type) {
+                    "likert" -> R.id.likertScaleNextButton
+                    "open" -> R.id.openEndedTextNextButton
+                    "single" -> R.id.singleMultipleAnswerNextButton
+                    "multi" -> R.id.multipleChoiseFragmentNextButton
+                    "blanks" -> R.id.fillInTheBlankNextButton
+                    "duration" -> R.id.timeDurationNextButton
+                    "slider" -> R.id.sliderScaleNextButton
+                    else -> R.id.footerNextButton
+                }
+                onView(withId(nextButton)).check(matches(isCompletelyDisplayed()))
             }
             onView(withId(R.id.footerNextButton)).check(matches(isDisplayed()))
+        }
+    }
+
+    @Test fun selectedLikertSurvivesActivityRecreation() {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val assignment = fixture()
+        ActivityScenario.launch<SurveyContainerActivity>(Intent(context, SurveyContainerActivity::class.java)
+            .putExtra(SurveyContainerActivity.ASSIGNMENT, assignment)
+            .putExtra(SurveyContainerActivity.IN_TEST_MODE, true)).use { scenario ->
+            scenario.onActivity { it.nextQuestion(assignment.survey.questions!![0]) }
+            onView(withId(R.id.likertScaleRadioButton5)).perform(androidx.test.espresso.action.ViewActions.click())
+            scenario.recreate()
+            onView(withId(R.id.likertScaleRadioButton5)).check(matches(isChecked()))
+            onView(withId(R.id.likertScaleNextButton)).check(matches(isEnabled()))
         }
     }
 

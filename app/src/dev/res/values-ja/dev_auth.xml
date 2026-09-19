@@ -1,5 +1,5 @@
 <resources>
-<string name="dev_login_intro">開発用Googleアカウントでログインしてください。この画面は接続確認用です。Surveyへの回答はまだ利用できません。</string>
+<string name="dev_login_intro">開発用Googleアカウントでログインすると、Devのアンケートを確認できます。</string>
 <string name="dev_sign_out">ログアウト</string>
 <string name="dev_retry_connection">接続を再確認</string>
 <string name="dev_login_failed">ログインがキャンセルされたか、失敗しました。再度お試しください。</string>
