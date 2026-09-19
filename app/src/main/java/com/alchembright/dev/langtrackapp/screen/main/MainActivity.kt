@@ -80,19 +80,17 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        StrictMode.setThreadPolicy(
-            StrictMode.ThreadPolicy.Builder()
-                .permitAll()
-                .build()
-        )
-
         super.onCreate(savedInstanceState)
-        if (android.os.Build.VERSION.SDK_INT >= 33 &&
+        if (!com.alchembright.dev.langtrackapp.util.ProjectEnvironment.isDev && android.os.Build.VERSION.SDK_INT >= 33 &&
             ContextCompat.checkSelfPermission(this, POST_NOTIFICATIONS) == PackageManager.PERMISSION_DENIED) {
             ActivityCompat.requestPermissions(this, arrayOf(POST_NOTIFICATIONS), 112)
         }
         mBind = DataBindingUtil.setContentView(this, R.layout.activity_main)
         applySystemBarInsets()
+        mBind.projectName.text = com.alchembright.dev.langtrackapp.util.ProjectEnvironment.name
+        mBind.projectMessage.setText(listOf(R.string.project_description, R.string.project_message_2).random())
+        com.alchembright.dev.langtrackapp.util.ProjectEnvironment.bindSelector(mBind.leftDrawerMenu.projectSelector)
+
         onBackPressedDispatcher.addCallback(this, object : androidx.activity.OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if (mBind.drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -174,7 +172,7 @@ class MainActivity : AppCompatActivity() {
 
         adapter.setAssignments(viewModel.assignmentList)
 
-        viewModel.assignmentListLiveData.observeForever {
+        viewModel.assignmentListLiveData.observe(this) {
             adapter.setAssignments(it)
             if (it.isNullOrEmpty()){
                 mBind.surveyRecyclerRefreshLayout.visibility = View.GONE
@@ -194,7 +192,7 @@ class MainActivity : AppCompatActivity() {
             R.string.Close
         )
         supportActionBar?.apply {
-            title = ""
+            title = getString(R.string.langTrackApp)
             setDisplayHomeAsUpEnabled(true)
         }
 
@@ -240,27 +238,27 @@ class MainActivity : AppCompatActivity() {
         val verNum = getVersionNumber(this)
         // save userId to repository
         if (mAuth.currentUser == null){
-            LoginActivity.start(this)
-        }else{
-            val userEmail = mAuth.currentUser!!.email
-            val userName = userEmail?.substringBefore('@')
-            viewModel.setCurrentUser(User(userName ?: "",userName ?: "", userEmail ?: ""))
-            mBind.leftDrawerMenu.menuUserNameTextView.text = userName ?: "noName"
+            com.alchembright.dev.langtrackapp.util.ProjectEnvironment.openLogin(this)
+        } else {
+            val user = mAuth.currentUser ?: return
+            val dev = com.alchembright.dev.langtrackapp.util.ProjectEnvironment.isDev
+            if (dev && viewModel.getCurrentUser().id.isEmpty()) {
+                com.alchembright.dev.langtrackapp.util.ProjectEnvironment.openLogin(this)
+                return
+            }
+            val userName = user.email?.substringBefore('@') ?: ""
+            if (!dev) viewModel.setCurrentUser(User(userName, userName, user.email ?: ""))
+            mBind.leftDrawerMenu.menuUserNameTextView.text = user.displayName ?: userName
             mBind.leftDrawerMenu.menuVersionTextView.text = getString(R.string.version_label, verNum)
-            viewModel.getAssignments()
-
-            mAuth.currentUser!!.getIdToken(false).addOnSuccessListener{
-                val idToken = it.token
-                if (!idToken.isNullOrBlank()){
-                    viewModel.setIdToken(idToken)
-                    println("idToken: $idToken")
+            user.getIdToken(false).addOnSuccessListener(this) { result ->
+                if (mAuth.currentUser?.uid == user.uid && !result.token.isNullOrBlank()) {
+                    viewModel.setIdToken(result.token!!)
+                    viewModel.getAssignments()
+                    if (!dev) viewModel.postDeviceToken()
                 }
             }
-            setTestModeIfTeam(userName ?: "")
-
-            mBind.leftDrawerMenu.menuServerSwitch.isChecked = viewModel.isInStagingUrl()
-            //push deviceToken to backend every time app starts
-            viewModel.postDeviceToken()
+            // A build has one isolated project; never offer the legacy staging toggle.
+            mBind.leftDrawerMenu.testView.visibility = View.GONE
         }
     }
 
@@ -304,8 +302,8 @@ class MainActivity : AppCompatActivity() {
                 if (value){
                     viewModel.clearAssignmentsList()
                     mAuth.signOut()
-                    unsubscribeToTopic()
-                    LoginActivity.start(this@MainActivity)
+                    if (!com.alchembright.dev.langtrackapp.util.ProjectEnvironment.isDev) unsubscribeToTopic()
+                    com.alchembright.dev.langtrackapp.util.ProjectEnvironment.openLogin(this@MainActivity)
                 }
             }
         })

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#516496</color><!-- 00574B -->
-    <color name="colorAccent">#516496</color>#
+    <color name="colorPrimary">#B82433</color>
+    <color name="colorPrimaryDark">#B82433</color><!-- 00574B -->
+    <color name="colorAccent">#B82433</color>#
     <color name="lta_gold">#33BAA081</color>#
-    <color name="lta_blue">#516496</color>#
-    <color name="lta_midblue">#AB516496</color>#
+    <color name="lta_blue">#B82433</color>#
+    <color name="lta_midblue">#ABB82433</color>#
     <color name="lta_red">#96516F</color>#
     <color name="lta_brown">#BF9156</color>#
     <color name="lta_yellow">#D2C541</color>#
@@ -15,5 +15,10 @@
     <color name="lta_light_grey">#F8E6E9E9</color>
     <color name="lta_light_grey2">#B3DCD7D1</color>
     <color name="lta_mid_grey">#F8CFD1D1</color>
-    <color name="lta_question_background">#A1516496</color>#
+    <color name="lta_question_background">#FFFFEEEE</color>#
+    <color name="kirokun_brand">#FF5857</color>
+    <color name="kirokun_on_brand">#FFFFFF</color>
+    <color name="kirokun_surface">#FFFFFF</color>
+    <color name="kirokun_surface_alternate">#FFF1F1</color>
+    <color name="kirokun_answered">#357A38</color>
 </resources>

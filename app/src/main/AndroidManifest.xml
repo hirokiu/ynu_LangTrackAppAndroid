@@ -37,7 +37,7 @@
         -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/lta_blue" />
+            android:resource="@color/kirokun_brand" />
 
         <activity
             android:name="com.alchembright.dev.langtrackapp.screen.instructions.InstructionsActivity"

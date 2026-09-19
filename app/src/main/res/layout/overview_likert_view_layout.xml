@@ -13,7 +13,7 @@
         android:layout_marginTop="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/overviewLikertViewTextTextView"
-        app:srcCompat="@drawable/lta_icon_likert_light" />
+        app:srcCompat="@drawable/kirokun_question_likert"  />
 
     <TextView
         android:id="@+id/overviewLikertViewTextTextView"
@@ -51,7 +51,7 @@
     <RadioGroup
         android:id="@+id/overviewLikertViewRadioGroup"
         android:layout_width="match_parent"
-        android:layout_height="32dp"
+        android:layout_height="wrap_content" android:minHeight="48dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="20dp"

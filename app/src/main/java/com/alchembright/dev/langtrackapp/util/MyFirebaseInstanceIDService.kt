@@ -35,7 +35,6 @@ class MyFirebaseInstanceIDService: FirebaseMessagingService() {
     override fun onNewToken(p0: String) {
         super.onNewToken(p0)
         RepositoryFactory.getRepository(this@MyFirebaseInstanceIDService).putDeviceToken()
-        println("messaging MyFirebaseInstanceIDService, onNewToken: $p0")
     }
 
     override fun onMessageReceived(p0: RemoteMessage) {

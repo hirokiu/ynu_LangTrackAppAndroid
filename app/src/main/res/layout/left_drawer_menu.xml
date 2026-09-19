@@ -86,57 +86,52 @@
             app:layout_constraintStart_toStartOf="@+id/view"
             app:layout_constraintTop_toBottomOf="@+id/menuUserNameTextView" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/menuInstructionsContactButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="10dp"
-            android:background="@android:color/transparent"
             android:text="@string/instructions"
             android:textAlignment="textStart"
             android:textAllCaps="false"
-            android:textColor="@color/lta_blue"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view2" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/menuContactButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
-            android:background="@android:color/transparent"
             android:text="@string/contakt"
             android:textAlignment="textStart"
             android:textAllCaps="false"
-            android:textColor="@color/lta_blue"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/menuInstructionsContactButton" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/menuAboutButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
-            android:background="@android:color/transparent"
             android:text="@string/about"
             android:textAlignment="textStart"
             android:textAllCaps="false"
-            android:textColor="@color/lta_blue"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/menuContactButton" />
 
+        <com.google.android.material.button.MaterialButton android:id="@+id/projectSelector" style="@style/Widget.Material3.Button.TextButton" android:layout_width="0dp" android:layout_height="wrap_content" android:text="@string/project_switch" app:layout_constraintTop_toBottomOf="@id/menuAboutButton" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
         <LinearLayout
             android:id="@+id/testView"
             android:layout_width="0dp"

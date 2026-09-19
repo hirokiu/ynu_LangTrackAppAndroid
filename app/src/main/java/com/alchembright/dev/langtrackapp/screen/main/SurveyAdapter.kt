@@ -68,14 +68,17 @@ class SurveyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val assignment = items[position]
+        if (holder !is StatisticsViewHolder) holder.itemView.setBackgroundColor(
+            androidx.core.content.ContextCompat.getColor(holder.itemView.context,
+                if (position % 2 == 0) com.alchembright.dev.langtrackapp.R.color.kirokun_surface else com.alchembright.dev.langtrackapp.R.color.kirokun_surface_alternate))
         when(holder){
             is ActiveViewHolder -> {
-                holder.setCallbacks()
                 holder.bind(assignment, object: OnExpiredListener{
                     override fun assignmentExpired() {
                         notifyDataSetChanged()
                     }
                 })
+                holder.setCallbacks()
             }
             is SurveyItemViewHolder -> {
                 holder.bind(assignment)
@@ -105,8 +108,7 @@ class SurveyAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     fun setAssignments(items: List<Assignment>){
         val activeAssignment = items.filter { it.isActive() }
-        if (activeAssignment.isEmpty() &&
-            items.isNotEmpty() &&
+        if (items.isNotEmpty() &&
             (items.filter { it.createdAt == STATISTICS_VIEW }).isEmpty()){
             val statisticsAssignment = Assignment(
                 survey = Survey(

@@ -8,40 +8,36 @@
         android:layout_height="match_parent">
 
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/fillInTheBlankNextButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="25dp"
-            android:background="@drawable/disabled_button"
             android:enabled="false"
             android:padding="10dp"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
             android:text="@string/next"
             android:textAllCaps="false"
-            android:textColor="@android:color/white"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/fillInTheBlankBackButton" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/fillInTheBlankBackButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginBottom="25dp"
-            android:background="@drawable/disabled_button"
             android:padding="10dp"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
             android:text="@string/previous"
             android:textAllCaps="false"
-            android:textColor="@android:color/white"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/fillInTheBlankNextButton"
@@ -103,7 +99,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.2"
-            app:srcCompat="@drawable/lta_icon_blank_light" />
+            app:srcCompat="@drawable/kirokun_question_blank"  />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

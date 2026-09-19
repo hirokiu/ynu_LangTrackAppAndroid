@@ -46,7 +46,7 @@ class ActiveViewHolder(theItemView: View,
     fun bind(item: Assignment, listener: OnExpiredListener){
         this.expiryListener = listener
         this.item = item
-        task.text = task.context.getString(R.string.surveyToAnswer)
+        task.text = "○ " + item.survey.title + "\n" + task.context.getString(R.string.unanswered)
         setRemainingTime()
     }
 
@@ -107,6 +107,7 @@ class ActiveViewHolder(theItemView: View,
 
 
     fun removeCallbacks(){
+        if (!::mainHandler.isInitialized) return
         mainHandler.removeCallbacks(repeatUpdatingText)
         mainHandler.removeCallbacksAndMessages(null)
     }

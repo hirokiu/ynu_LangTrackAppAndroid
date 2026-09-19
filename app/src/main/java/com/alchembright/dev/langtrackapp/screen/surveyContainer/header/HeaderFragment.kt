@@ -11,6 +11,8 @@ package com.alchembright.dev.langtrackapp.screen.surveyContainer.header
 * University of York
 * */
 
+import com.alchembright.dev.langtrackapp.util.toDate
+import com.alchembright.dev.langtrackapp.util.formatToReadable
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -78,7 +80,10 @@ class HeaderFragment : Fragment(){
     fun setText(){
         if (context is OnQuestionInteractionListener) {
             if (::binding.isInitialized) {
-                binding.headerTitleTextView.text = question.title
+                val assignment = (activity as? com.alchembright.dev.langtrackapp.screen.surveyContainer.SurveyContainerActivity)?.assignmentDetails()
+                binding.startPublished.text = assignment?.publishAt?.toDate()?.formatToReadable(getString(R.string.dateFormat)) ?: getString(R.string.noDate)
+                binding.startDeadline.text = assignment?.expireAt?.toDate()?.formatToReadable(getString(R.string.dateFormat)) ?: getString(R.string.noDate)
+                binding.headerTitleTextView.text = assignment?.survey?.title ?: question.title
                 binding.headerTextTextView.text = question.text
             }
         }

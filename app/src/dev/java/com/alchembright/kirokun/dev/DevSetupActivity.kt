@@ -1,5 +1,7 @@
 package com.alchembright.kirokun.dev
 
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.alchembright.dev.langtrackapp.util.applySystemBarInsets
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -35,18 +37,23 @@ class DevSetupActivity : AppCompatActivity() {
     private val client = OkHttpClient.Builder().followRedirects(false).followSslRedirects(false).callTimeout(15, TimeUnit.SECONDS).build()
     private var generation = 0
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
         check(FirebaseApp.getInstance().options.projectId == "kirokun-dev" && packageName == "com.alchembright.kirokun.dev") { "Dev Firebase configuration mismatch" }
         status = TextView(this).apply { text = getString(R.string.dev_login_intro); textSize = 18f }
-        signIn = Button(this).apply { setText(R.string.dev_google_sign_in); setOnClickListener { googleSignIn() } }
-        signOut = Button(this).apply { setText(R.string.dev_sign_out); setOnClickListener { generation++; auth.signOut(); status.setText(R.string.dev_login_intro); render(false) } }
-        retry = Button(this).apply { setText(R.string.dev_retry_connection); setOnClickListener { checkConnection() } }
+        signIn = com.google.android.material.button.MaterialButton(this).apply { setText(R.string.dev_google_sign_in); setOnClickListener { googleSignIn() } }
+        signOut = com.google.android.material.button.MaterialButton(this).apply { setText(R.string.dev_sign_out); setOnClickListener { generation++; auth.signOut(); status.setText(R.string.dev_login_intro); render(false) } }
+        retry = com.google.android.material.button.MaterialButton(this).apply { setText(R.string.dev_retry_connection); setOnClickListener { checkConnection() } }
         spinner = ProgressBar(this)
         setContentView(LinearLayout(this).apply {
-            orientation = LinearLayout.VERTICAL; setPadding(48, 150, 48, 48)
+            orientation = LinearLayout.VERTICAL; val inset = (24 * resources.displayMetrics.density).toInt(); setPadding(inset, inset, inset, inset)
             addView(TextView(this@DevSetupActivity).apply { text = "KIROKUN Dev"; textSize = 28f })
+            addView(com.google.android.material.button.MaterialButton(this@DevSetupActivity).apply {
+                com.alchembright.dev.langtrackapp.util.ProjectEnvironment.bindSelector(this)
+            })
             addView(status); addView(signIn); addView(retry); addView(signOut); addView(spinner)
         })
+        applySystemBarInsets()
         render(false)
         if (auth.currentUser != null) checkConnection()
     }
@@ -83,14 +90,23 @@ class DevSetupActivity : AppCompatActivity() {
             val token = if (task.isSuccessful) task.result?.token else null
             if (token == null) { failed(); return@addOnCompleteListener }
             // Server validates Firebase UID against its allowlist; never derive identity from email.
-            val request = Request.Builder().url(BuildConfig.API_BASE_URL + "admin/surveys?page=1&limit=10").header("token", token).build()
+            val request = Request.Builder().url(BuildConfig.API_BASE_URL + "me").header("token", token).build()
             client.newCall(request).enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) { showResult(R.string.dev_connection_failed, requestGeneration) }
                 override fun onResponse(call: Call, response: Response) {
                     response.use {
-                        val valid = try { JSONObject(it.body?.string() ?: "").optJSONArray("items") != null } catch (_: Exception) { false }
-                        val message = if (it.code == 200 && valid) R.string.dev_connected else if (it.code == 401 || it.code == 403) R.string.dev_not_authorized else R.string.dev_connection_failed
-                        showResult(message, requestGeneration)
+                        val userId = try { JSONObject(it.body?.string() ?: "").optString("userId") } catch (_: Exception) { "" }
+                        if (it.code == 200 && userId.isNotBlank()) {
+                            runOnUiThread {
+                                if (!isDestroyed && requestGeneration == generation && auth.currentUser?.uid == user.uid) {
+                                    val repo = com.alchembright.dev.langtrackapp.data.RepositoryFactory.getRepository(this@DevSetupActivity)
+                                    repo.setCurrentUser(com.alchembright.dev.langtrackapp.data.model.User(userId, userId, user.email ?: ""))
+                                    repo.idToken = token
+                                    com.alchembright.dev.langtrackapp.screen.main.MainActivity.start(this@DevSetupActivity)
+                                    finish()
+                                }
+                            }
+                        } else showResult(if (it.code == 401 || it.code == 403) R.string.dev_not_authorized else R.string.dev_connection_failed, requestGeneration)
                     }
                 }
             })

@@ -12,7 +12,7 @@
         android:layout_marginTop="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/overviewOpenTextTextView"
-        app:srcCompat="@drawable/lta_icon_open_light" />
+        app:srcCompat="@drawable/kirokun_question_open"  />
 
     <TextView
         android:id="@+id/overviewOpenTextTextView"

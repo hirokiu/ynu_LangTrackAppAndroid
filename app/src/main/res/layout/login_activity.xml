@@ -37,6 +37,7 @@
                 android:textAlignment="center"
                 android:textSize="18sp" />
 
+            <com.google.android.material.button.MaterialButton android:id="@+id/projectSelector" style="@style/Widget.Material3.Button.OutlinedButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="16dp" />
             <EditText
                 android:id="@+id/logInEmailEditText"
                 android:layout_width="match_parent"
@@ -63,7 +64,7 @@
                 android:singleLine="true"
                 android:textAlignment="center" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/logInButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

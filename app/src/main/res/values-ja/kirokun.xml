@@ -1,0 +1,24 @@
+<resources>
+    <string name="project_label">プロジェクト：%1$s</string>
+    <string name="project_switch">プロジェクトを切り替える</string>
+    <string name="project_only">このアプリの接続先は%1$sです。別環境は専用アプリからご利用ください。</string>
+    <string name="project_description">あなたの回答が、研究の一歩につながります。</string>
+    <string name="project_message_2">一つひとつの回答が大切です。ご協力ありがとうございます。</string>
+    <string name="question_position">設問 %1$d / %2$d</string>
+    <string name="review_answers">回答内容の確認</string>
+    <string name="submit_answers">回答を送信</string>
+    <string name="send_failed">送信できませんでした。回答は画面に残っています。再度お試しください。</string>
+    <string name="sending_answers">送信中…</string>
+    <string name="published_label">公開日</string>
+    <string name="deadline_label">回答期限</string>
+    <string name="input_likert">5件法</string>
+    <string name="input_open">自由入力</string>
+    <string name="input_multi">複数選択</string>
+    <string name="input_single">単一選択</string>
+    <string name="input_blanks">穴埋め</string>
+    <string name="input_slider">スライダー</string>
+    <string name="input_duration">時間</string>
+    <string name="input_required">入力必須</string>
+    <string name="no_answer">未回答</string>
+    <string name="open_surveys">アンケートを開く</string>
+</resources>

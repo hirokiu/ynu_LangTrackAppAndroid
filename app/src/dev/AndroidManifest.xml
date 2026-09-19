@@ -1,9 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
-<application android:label="KIROKUN Dev" tools:replace="android:label,android:usesCleartextTraffic" android:usesCleartextTraffic="false" tools:node="merge">
+<application android:icon="@mipmap/kirokun_dev" android:label="KIROKUN Dev" tools:replace="android:icon,android:label,android:usesCleartextTraffic" android:usesCleartextTraffic="false" tools:node="merge">
 <meta-data android:name="firebase_messaging_auto_init_enabled" android:value="false"/>
 <service android:name="com.alchembright.dev.langtrackapp.util.MyFirebaseInstanceIDService" tools:node="remove"/>
 <activity android:name="com.alchembright.dev.langtrackapp.screen.splash.SplashActivity" tools:node="remove" />
-<activity android:name="com.alchembright.kirokun.dev.DevSetupActivity" android:exported="true">
+<activity android:name="com.alchembright.kirokun.dev.DevSetupActivity" android:theme="@style/SplashTheme" android:exported="true">
 <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
 </activity>
 </application></manifest>

@@ -101,6 +101,7 @@ class Repository(val context: Context) {
     }
 
     fun putDeviceToken(){
+        if (com.alchembright.dev.langtrackapp.util.ProjectEnvironment.isDev) return
 
         apiIsAlive { alive, theUrl ->
             //if (alive) {
@@ -279,9 +280,12 @@ class Repository(val context: Context) {
         })
     }
 
-    fun postAnswer(answerDict: Map<Int, Answer>){
+    fun postAnswer(answerDict: Map<Int, Answer>, completion: (Boolean) -> Unit) {
+        fun completed(success: Boolean) = android.os.Handler(android.os.Looper.getMainLooper()).post { completion(success) }
+        if (currentUser.id.isEmpty() || selectedAssignment == null) { completed(false); return }
         if (currentUser.id.isNotEmpty()){
             getUrl { theUrl ->
+                if (theUrl == null) { completed(false); return@getUrl }
                 val answers = mutableListOf<AnswerBody>()
                 for (answer in answerDict.values) {
                     var stringValue: String? = null
@@ -335,15 +339,13 @@ class Repository(val context: Context) {
                         jsonAnswer2.toRequestBody(mediaTypeJson)
                     )
                     val call = client.newCall(requestBuilder.build())
-                    call.execute().use {
-                        if (it.isSuccessful) {
-                            println("postAnswer SUCCESS: ${it.body} url: ${theUrl}")
-                            //reload to get answer to list
-                            getAssignments()
-                        } else {
-                            println("postAnswer ERROR: ${it.body} url: ${theUrl}")
+                    try {
+                        call.execute().use {
+                            completed(it.isSuccessful)
+                            if (it.isSuccessful) getAssignments()
                         }
-                    }
+                    } catch (_: Exception) { completed(false) }
+
                 }
             }
         }
@@ -351,11 +353,10 @@ class Repository(val context: Context) {
 
     fun surveyOpened(){
         //test2()
-        println("token: $idToken")
+        // Never log authentication tokens.
         getUrl { theUrl ->
             if (theUrl != null && selectedAssignment != null) {
                 val openedUrl = "${theUrl}assignments/${selectedAssignment!!.id}/open"
-                println("token: $idToken, openedUrl: $openedUrl")
 
                 IO.execute {
                     val (ignoredRequest, ignoredResponse, result) =
@@ -392,28 +393,31 @@ class Repository(val context: Context) {
         assignmentListLiveData.value = assignmentList
     }
 
-    fun getAssignments(){
-        getUrl { theUrl ->
-            val assigmnentUrl = "${theUrl}users/${currentUser.userName}/assignments"
-
-            val request = Request.Builder()
-                .url(assigmnentUrl)
-                .addHeader("token", idToken)
-                .build()
-
-            client.newCall(request).execute().use {
-                if (it.isSuccessful) {
-                    val body = it.body!!.string()
-                    val templist = sortList(getAssignmentsFromJson(body)).toMutableList()
-                    if (!templist.isNullOrEmpty()) {
-                        assignmentList = templist
-                        assignmentListLiveData.value = assignmentList
+    fun getAssignments() {
+        val requestedId = currentUser.id
+        val requestedUid = com.google.firebase.auth.FirebaseAuth.getInstance().currentUser?.uid
+        if (requestedId.isEmpty() || idToken.isEmpty()) return
+        getUrl { base ->
+            if (base == null) return@getUrl
+            val request = Request.Builder().url(base.toHttpUrl().newBuilder()
+                .addPathSegment("users").addPathSegment(requestedId).addPathSegment("assignments").build())
+                .header("token", idToken).build()
+            client.newCall(request).enqueue(object : okhttp3.Callback {
+                override fun onFailure(call: okhttp3.Call, e: java.io.IOException) { }
+                override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
+                    response.use {
+                        if (!it.isSuccessful) return
+                        val items = try { sortList(getAssignmentsFromJson(it.body?.string() ?: "[]")).toMutableList() }
+                            catch (_: Exception) { return }
+                        android.os.Handler(android.os.Looper.getMainLooper()).post {
+                            if (currentUser.id == requestedId && com.google.firebase.auth.FirebaseAuth.getInstance().currentUser?.uid == requestedUid) {
+                                assignmentList = items
+                                assignmentListLiveData.value = items
+                            }
+                        }
                     }
-                } else {
-                    println("Repository getAssignmens ERROR: ${it.message}")
-                    showApiFailInfo(context)
                 }
-            }
+            })
         }
     }
 

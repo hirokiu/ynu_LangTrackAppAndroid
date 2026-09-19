@@ -1,0 +1,4 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="36dp" android:height="36dp" android:viewportWidth="36" android:viewportHeight="36">
+<path android:fillColor="@color/kirokun_brand" android:pathData="M18,0a18,18 0,1 0,0.01,0"/>
+<path android:fillColor="@android:color/transparent" android:strokeColor="#FFFFFF" android:strokeWidth="2" android:strokeLineCap="round" android:strokeLineJoin="round" android:pathData="M8,15a3,3 0,1 0,0.01,0 M17,15a3,3 0,1 0,0.01,0 M26,15a3,3 0,1 0,0.01,0"/>
+</vector>

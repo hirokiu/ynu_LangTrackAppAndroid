@@ -40,6 +40,7 @@ class LoginActivity : AppCompatActivity() {
 
         mBind = DataBindingUtil.setContentView(this,R.layout.login_activity)
         applySystemBarInsets()
+        com.alchembright.dev.langtrackapp.util.ProjectEnvironment.bindSelector(mBind.projectSelector)
 
         viewModel = ViewModelProvider(this,
             LoginViewModelFactory(this)

@@ -64,6 +64,8 @@ class SurveyContainerActivity : AppCompatActivity(),
     private var answer = mutableMapOf<Int,Answer>()
     private var theAssignment: Assignment? = null
     private var inTestMode = false
+    private var sending = false
+    private var restoredIndex: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,6 +86,8 @@ class SurveyContainerActivity : AppCompatActivity(),
         ).get(SurveyContainerViewModel::class.java)
         mBind.viewModel = viewModel
 
+        savedInstanceState?.getParcelableArrayList<Answer>("kirokun.answers")?.forEach { answer[it.index] = it }
+        restoredIndex = savedInstanceState?.getInt("kirokun.page")
         //create fragments
         headerFragment = HeaderFragment.newInstance()
         likertScaleFragment = LikertScaleFragment.newInstance()
@@ -102,7 +106,14 @@ class SurveyContainerActivity : AppCompatActivity(),
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putParcelableArrayList("kirokun.answers", ArrayList(answer.values))
+        outState.putInt("kirokun.page", currentPage.index)
+        super.onSaveInstanceState(outState)
+    }
+
     private fun confirmCloseSurvey() {
+        if (sending) return
         if (currentPage.type == HEADER_VIEW){
             closeTheSurvey()
         }else {
@@ -136,7 +147,7 @@ class SurveyContainerActivity : AppCompatActivity(),
         val temp = assignment.survey.questions?.toMutableList()
         if (!temp.isNullOrEmpty()) {
             questionList = temp
-            showQuestion(questionList.first().index)
+            showQuestion(restoredIndex ?: questionList.first().index)
         }else{
             //no questions - close Survey
             showErrorPopup()
@@ -168,6 +179,23 @@ class SurveyContainerActivity : AppCompatActivity(),
             for (question in questionList) {
                 if (question.index == index) {
                     currentPage = question
+                    val inputs = questionList.filter { it.type != HEADER_VIEW && it.type != FOOTER_VIEW }
+                    val position = inputs.indexOfFirst { it.index == question.index } + 1
+                    val kind = when (question.type) {
+                        LIKERT_SCALES -> R.string.input_likert
+                        OPEN_ENDED_TEXT_RESPONSES -> R.string.input_open
+                        MULTIPLE_CHOICE -> R.string.input_multi
+                        SINGLE_MULTIPLE_ANSWERS -> R.string.input_single
+                        FILL_IN_THE_BLANK -> R.string.input_blanks
+                        SLIDER_SCALE -> R.string.input_slider
+                        TIME_DURATION -> R.string.input_duration
+                        else -> null
+                    }
+                    mBind.surveyHeading.text = listOfNotNull(
+                        theAssignment?.survey?.title,
+                        if (position > 0) getString(R.string.question_position, position, inputs.size) else null,
+                        kind?.let { getString(it) }
+                    ).joinToString("\n")
                     val existingAnswer = answer[question.index]
                     when (question.type) {
 
@@ -383,7 +411,28 @@ class SurveyContainerActivity : AppCompatActivity(),
         closeTheSurvey()
     }
 
+    private fun includedAnswerIndexes(): Set<Int> {
+        val included = linkedSetOf<Int>()
+        val visited = mutableSetOf<Int>()
+        var index = questionList.lastOrNull()?.index ?: return included
+        while (index > 0 && visited.add(index)) {
+            val question = questionList.firstOrNull { it.index == index } ?: break
+            if (question.type != HEADER_VIEW && question.type != FOOTER_VIEW) included.add(index)
+            index = question.previous
+        }
+        return included
+    }
+
+    fun answerReview(): String = questionList.filter { it.index in includedAnswerIndexes() }
+        .joinToString("\n\n") { question ->
+            val label = question.text.ifBlank { question.title }
+            label + "\n" + com.alchembright.dev.langtrackapp.util.AnswerReview.value(question, answer[question.index], getString(R.string.no_answer))
+        }.ifBlank { getString(R.string.no_answer) }
+
+    fun assignmentDetails() = theAssignment
+
     override fun sendInSurvey() {
+        if (sending) return
         if (answer.isNotEmpty()){
             if (theAssignment?.expireAt?.toDate()?.after(Date()) == false && !inTestMode){
 
@@ -406,32 +455,18 @@ class SurveyContainerActivity : AppCompatActivity(),
             }else{
 
                 //not expired (or in test mode) - send in answers
-                val tempList = theAssignment?.survey?.questions?.sortedBy {it.index }
-                val answersToInclude = mutableListOf<Int>()
-
-                var counter = tempList?.last()?.index ?: -99
-                if (counter != -99){
-                    while (counter > 0) {
-                        val currentQuestion = tempList?.first { it.index == counter }
-                        if (currentQuestion?.type ?: "header" != "header" &&
-                            currentQuestion?.type ?: "footer" != "footer"){
-                            answersToInclude.add(counter)
-                        }
-                        counter = currentQuestion?.previous ?: 0
-                    }
+                val included = includedAnswerIndexes()
+                val tempAnswers = answer.filterKeys { it in included }.toMutableMap()
+                if (inTestMode) { finish(); return }
+                sending = true
+                footerFragment.setSending(true)
+                viewModel.postAnswer(tempAnswers) { success ->
+                    if (isDestroyed) return@postAnswer
+                    sending = false
+                    footerFragment.setSending(false)
+                    if (success) finish() else com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                        .setMessage(R.string.send_failed).setPositiveButton(android.R.string.ok, null).show()
                 }
-                val tempAnswers = mutableMapOf<Int,Answer>()
-                for (a in answersToInclude){
-                    val theAnswer = answer.filter { it.value.index == a }
-                    if (theAnswer.size == 1){
-                        theAnswer.forEach {
-                            tempAnswers[it.value.index] = it.value
-                        }
-                    }
-                }
-                println("tempAnswers: $tempAnswers")
-                viewModel.postAnswer(tempAnswers)
-                finish()
             }
         }else {
             finish()

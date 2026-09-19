@@ -1,62 +1,17 @@
 package com.alchembright.dev.langtrackapp.screen.splash
 
-/*
-* Stephan Björck
-* Humanistlaboratoriet
-* Lunds Universitet
-* stephan.bjorck@humlab.lu.se
-
-* Viktor Czyżewski
-* RSE Team
-* University of York
-* */
-
-import com.alchembright.dev.langtrackapp.util.applySystemBarInsets
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import com.alchembright.dev.langtrackapp.R
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.alchembright.dev.langtrackapp.screen.main.MainActivity
 
+/** Routing only: the system owns the launch screen; no artificial delay. */
 class SplashActivity : AppCompatActivity() {
-
-    companion object{
-        private const val DELAY: Long = 1500
-    }
-
-    private val mHandler = Handler()
-    private val mLauncher = Launcher()
-
-    override fun onStart() {
-        super.onStart()
-        mHandler.postDelayed(mLauncher, DELAY)
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
+        val splash = installSplashScreen()
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.splash_activity)
-        applySystemBarInsets()
-
-        /*if extras is not null, it contains a notification - save to firebase
-        //this is how you handle notification if app is in background and user clicked notification
-        if(intent.extras != null && intent.extras is Bundle){
-            Notification.saveNewNotification(intent.extras as Bundle)
-        }*/
-    }
-
-    override fun onStop() {
-        mHandler.removeCallbacks(mLauncher)
-        super.onStop()
-    }
-
-    private fun launch(){
+        splash.setKeepOnScreenCondition { true }
         MainActivity.start(this)
         finish()
-    }
-
-    private inner class Launcher: Runnable{
-        override fun run() {
-            launch()
-        }
-
     }
 }

@@ -43,18 +43,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/popupAlertOkButton"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="5dp"
-        android:background="@android:color/transparent"
         android:elevation="5dp"
         android:text="Ok"
         android:textAllCaps="false"
-        android:textColor="@color/lta_blue"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

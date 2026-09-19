@@ -1,0 +1,24 @@
+<resources>
+    <string name="project_label">Project: %1$s</string>
+    <string name="project_switch">Switch project</string>
+    <string name="project_only">This app connects only to %1$s. Use the other app for a different environment.</string>
+    <string name="project_description">Your answers help research move forward.</string>
+    <string name="project_message_2">Every answer counts. Thank you for taking part.</string>
+    <string name="question_position">Question %1$d / %2$d</string>
+    <string name="review_answers">Review your answers</string>
+    <string name="submit_answers">Submit answers</string>
+    <string name="send_failed">Could not send. Your answers are still here. Please try again.</string>
+    <string name="sending_answers">Sending…</string>
+    <string name="published_label">Published</string>
+    <string name="deadline_label">Deadline</string>
+    <string name="input_likert">5-point scale</string>
+    <string name="input_open">Free text</string>
+    <string name="input_multi">Multiple choice</string>
+    <string name="input_single">Single choice</string>
+    <string name="input_blanks">Fill in the blank</string>
+    <string name="input_slider">Slider</string>
+    <string name="input_duration">Duration</string>
+    <string name="input_required">Required</string>
+    <string name="no_answer">Not answered</string>
+    <string name="open_surveys">Open surveys</string>
+</resources>

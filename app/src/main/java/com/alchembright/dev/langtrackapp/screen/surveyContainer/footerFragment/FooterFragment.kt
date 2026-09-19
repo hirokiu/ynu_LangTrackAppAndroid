@@ -64,7 +64,7 @@ class FooterFragment : Fragment(){
 
     fun setText(){
         if (::binding.isInitialized) {
-            binding.footerTextView.text = question.text
+            binding.footerTextView.text = (activity as? com.alchembright.dev.langtrackapp.screen.surveyContainer.SurveyContainerActivity)?.answerReview() ?: question.text
         }
     }
 
@@ -72,6 +72,13 @@ class FooterFragment : Fragment(){
         super.onResume()
         //update question
         setText()
+    }
+
+    fun setSending(sending: Boolean) {
+        if (!::binding.isInitialized) return
+        binding.footerNextButton.isEnabled = !sending
+        binding.footerBackButton.isEnabled = !sending
+        binding.footerNextButton.setText(if (sending) R.string.sending_answers else R.string.submit_answers)
     }
 
     override fun onDetach() {

@@ -38,12 +38,16 @@ class SurveyItemViewHolder(theItemView: View,
         this.item = item
         task.text = this.item.survey.title
         date.text = item.publishAt.toDate()?.formatToReadable(date.context.getString(R.string.dateFormat)) ?: date.context.getString(R.string.noDate)
+        task.setTextColor(androidx.core.content.ContextCompat.getColor(task.context,
+            if (item.dataset != null) R.color.lta_grey else R.color.lta_blue))
+        answeredTextView.setTextColor(androidx.core.content.ContextCompat.getColor(task.context,
+            if (item.dataset != null) R.color.kirokun_answered else R.color.lta_blue))
         if (item.dataset != null) {
-            answeredTextView.text = answeredTextView.context.getString(R.string.answered)
+            answeredTextView.text = "✓ " + answeredTextView.context.getString(R.string.answered)
             indicator.background = indicator.context.getDrawable(R.drawable.recycler_indicator_background_green)
         }
             else {
-            answeredTextView.text = answeredTextView.context.getString(R.string.unanswered)
+            answeredTextView.text = "○ " + answeredTextView.context.getString(R.string.unanswered)
             indicator.background = indicator.context.getDrawable(R.drawable.recycler_indicator_background_gray)
         }
     }

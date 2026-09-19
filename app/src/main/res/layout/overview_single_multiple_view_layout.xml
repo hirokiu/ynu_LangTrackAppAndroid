@@ -13,7 +13,7 @@
         android:layout_marginTop="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/overviewSingleViewTextTextView"
-        app:srcCompat="@drawable/lta_icon_single_marked_light" />
+        app:srcCompat="@drawable/kirokun_question_single"  />
 
     <TextView
         android:id="@+id/overviewSingleViewTextTextView"

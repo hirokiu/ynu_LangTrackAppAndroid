@@ -22,7 +22,7 @@ class SurveyContainerViewModel (private var repo: Repository): ViewModel() {
         return repo.getCurrentUser()
     }
 
-    fun postAnswer(answers: Map<Int, Answer>){
-        repo.postAnswer(answers)
+    fun postAnswer(answers: Map<Int, Answer>, completion: (Boolean) -> Unit){
+        repo.postAnswer(answers, completion)
     }
 }

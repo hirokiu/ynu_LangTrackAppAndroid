@@ -1,80 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <Button
-            android:id="@+id/footerNextButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="25dp"
-            android:background="@drawable/disabled_button"
-            android:textColor="@android:color/white"
-            android:padding="10dp"
-            android:paddingStart="15dp"
-            android:paddingEnd="15dp"
-            android:text="@string/submit"
-            android:textAllCaps="false"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/footerBackButton" />
-
-        <Button
-            android:id="@+id/footerBackButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginBottom="25dp"
-            android:background="@drawable/disabled_button"
-            android:textColor="@android:color/white"
-            android:padding="10dp"
-            android:paddingStart="15dp"
-            android:paddingEnd="15dp"
-            android:text="@string/previous"
-            android:textAllCaps="false"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/footerNextButton"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/footerTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            android:maxLines="10"
-            android:text=""
-            android:textAlignment="center"
-            android:textColor="@color/lta_text"
-            android:textSize="17sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/footerNextButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView9"
-            app:layout_constraintVertical_bias="0.2" />
-
-        <ImageView
-            android:id="@+id/textView9"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:layout_constraintBottom_toTopOf="@+id/footerNextButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.2"
-            app:srcCompat="@drawable/lta_icon_done_light" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="16dp">
+<ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:fillViewport="true">
+<TextView android:id="@+id/footerTextView" android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="8dp" android:textSize="17sp" android:textColor="@color/lta_text" android:textIsSelectable="true" />
+</ScrollView>
+<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+<com.google.android.material.button.MaterialButton android:id="@+id/footerBackButton" style="@style/Widget.Material3.Button.OutlinedButton" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="@string/previous" />
+<com.google.android.material.button.MaterialButton android:id="@+id/footerNextButton" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="8dp" android:text="@string/submit_answers" />
+</LinearLayout>
+</LinearLayout></layout>

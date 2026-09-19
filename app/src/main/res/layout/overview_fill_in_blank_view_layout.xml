@@ -43,7 +43,7 @@
         android:layout_marginTop="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/overviewFillBlankTextView"
-        app:srcCompat="@drawable/lta_icon_blank_light" />
+        app:srcCompat="@drawable/kirokun_question_blank"  />
 
     <LinearLayout
         android:id="@+id/overviewFillBlankChoicesLayout"
