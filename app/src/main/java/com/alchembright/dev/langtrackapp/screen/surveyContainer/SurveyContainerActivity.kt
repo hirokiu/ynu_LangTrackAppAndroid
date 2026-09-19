@@ -426,7 +426,7 @@ class SurveyContainerActivity : AppCompatActivity(),
     fun answerReview(): String = questionList.filter { it.index in includedAnswerIndexes() }
         .joinToString("\n\n") { question ->
             val label = question.text.ifBlank { question.title }
-            label + "\n" + com.alchembright.dev.langtrackapp.util.AnswerReview.value(question, answer[question.index], getString(R.string.no_answer))
+            label + "\n" + com.alchembright.dev.langtrackapp.util.AnswerReview.value(question, answer[question.index], getString(R.string.no_answer), getString(R.string.not_available))
         }.ifBlank { getString(R.string.no_answer) }
 
     fun assignmentDetails() = theAssignment

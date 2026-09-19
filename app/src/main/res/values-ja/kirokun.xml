@@ -21,4 +21,5 @@
     <string name="input_required">入力必須</string>
     <string name="no_answer">未回答</string>
     <string name="open_surveys">アンケートを開く</string>
+    <string name="invalid_blank_question">設問の空欄が設定されていません。研究者にお問い合わせください。</string>
 </resources>

@@ -38,38 +38,35 @@ class TimeDurationFragment : Fragment(){
         binding.numberPickerHour.minValue = 0
         binding.numberPickerHour.maxValue = listOfHours.size - 1
         binding.numberPickerHour.displayedValues = listOfHours
-        binding.numberPickerHour.setOnScrollListener { view, scrollState ->
-            if (scrollState == NumberPicker.OnScrollListener.SCROLL_STATE_IDLE){
-                selectedHours = view.value
-                listener?.setTimeDurationAnswer(getSelectedDurationInSeconds())
-            }
+        binding.numberPickerHour.setOnValueChangedListener { _, _, _ ->
+            listener?.setTimeDurationAnswer(getSelectedDurationInSeconds())
         }
         binding.numberPickerMinutes.minValue = 0
         binding.numberPickerMinutes.maxValue = listOfMinutes.size - 1
         binding.numberPickerMinutes.displayedValues = listOfMinutes
-        binding.numberPickerMinutes.setOnScrollListener { view, scrollState ->
-            if (scrollState == NumberPicker.OnScrollListener.SCROLL_STATE_IDLE){
-                selectedMinutes = listOfMinutes[view.value].toInt()
-                listener?.setTimeDurationAnswer(getSelectedDurationInSeconds())
-            }
+        binding.numberPickerMinutes.setOnValueChangedListener { _, _, _ ->
+            listener?.setTimeDurationAnswer(getSelectedDurationInSeconds())
         }
 
         binding.timeDurationBackButton.setOnClickListener {
+            binding.numberPickerHour.clearFocus()
+            binding.numberPickerMinutes.clearFocus()
+            listener?.setTimeDurationAnswer(getSelectedDurationInSeconds())
             theAnswer = null
             listener?.prevoiusQuestion(theQuestion)
         }
         binding.timeDurationNextButton.setOnClickListener {
+            binding.numberPickerHour.clearFocus()
+            binding.numberPickerMinutes.clearFocus()
+            listener?.setTimeDurationAnswer(getSelectedDurationInSeconds())
             theAnswer = null
             listener?.nextQuestion(theQuestion)
         }
         return v
     }
 
-    private fun getSelectedDurationInSeconds() : Int{
-        var seconds: Int = selectedHours * 60 * 60
-        seconds += (selectedMinutes * 60)
-        return seconds
-    }
+    private fun getSelectedDurationInSeconds(): Int =
+        binding.numberPickerHour.value * 3600 + listOfMinutes[binding.numberPickerMinutes.value].toInt() * 60
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

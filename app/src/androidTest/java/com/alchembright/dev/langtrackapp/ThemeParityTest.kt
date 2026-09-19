@@ -24,6 +24,7 @@ class ThemeParityTest {
         assertEquals(listOf(0, 2), answer.multipleChoiceAnswer)
         assertEquals("5", AnswerReview.value(Question(type = "likert"), Answer(likertAnswer = 4), "missing"))
         assertEquals("1:30", AnswerReview.value(Question(type = "duration"), Answer(timeDurationAnswer = 5400), "missing"))
+        assertEquals("該当なし", AnswerReview.value(Question(type = "slider"), Answer(sliderScaleAnswer = -1), "missing", "該当なし"))
         assertEquals("missing", AnswerReview.value(Question(type = "single"), Answer(singleMultipleAnswer = 9), "missing"))
     }
 
@@ -59,13 +60,64 @@ class ThemeParityTest {
         }
     }
 
+    @Test fun blankSelectionKeepsOriginalOptionsAndAnswerLabel() {
+        checkBlankSelection(valid = true)
+    }
+
+    @Test fun malformedBlankDoesNotCrashOrEnableNext() {
+        checkBlankSelection(valid = false)
+    }
+
+    private fun checkBlankSelection(valid: Boolean) {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val assignment = fixture()
+        if (!valid) assignment.survey.questions!![5].text = "Missing marker"
+        ActivityScenario.launch<SurveyContainerActivity>(Intent(context, SurveyContainerActivity::class.java)
+            .putExtra(SurveyContainerActivity.ASSIGNMENT, assignment)
+            .putExtra(SurveyContainerActivity.IN_TEST_MODE, true)).use { scenario ->
+            assignment.survey.questions!!.take(5).forEach { current ->
+                scenario.onActivity { it.nextQuestion(current) }
+                InstrumentationRegistry.getInstrumentation().waitForIdleSync()
+            }
+            scenario.onActivity { it.findViewById<android.widget.Spinner>(R.id.choice_spinner).setSelection(2) }
+            InstrumentationRegistry.getInstrumentation().waitForIdleSync()
+            scenario.onActivity { activity ->
+                assertEquals(valid, activity.findViewById<android.view.View>(R.id.fillInTheBlankNextButton).isEnabled)
+                assertEquals(listOf("A", "B"), activity.assignmentDetails()!!.survey.questions!![5].fillBlanksChoises)
+                if (valid) assertTrue(activity.findViewById<android.widget.TextView>(R.id.fillInTheBlankTextView).text.toString().contains("B"))
+            }
+        }
+    }
+
+    @Test fun durationIsCommittedWhenAdvancingWithoutScrollEvents() {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val assignment = fixture()
+        ActivityScenario.launch<SurveyContainerActivity>(Intent(context, SurveyContainerActivity::class.java)
+            .putExtra(SurveyContainerActivity.ASSIGNMENT, assignment)
+            .putExtra(SurveyContainerActivity.IN_TEST_MODE, true)).use { scenario ->
+            assignment.survey.questions!!.take(6).forEach { current ->
+                scenario.onActivity { it.nextQuestion(current) }
+                InstrumentationRegistry.getInstrumentation().waitForIdleSync()
+            }
+            scenario.onActivity { activity ->
+                activity.findViewById<android.widget.NumberPicker>(R.id.number_picker_hour).value = 1
+                activity.findViewById<android.widget.NumberPicker>(R.id.number_picker_minutes).value = 1
+                activity.findViewById<android.view.View>(R.id.timeDurationNextButton).performClick()
+            }
+            InstrumentationRegistry.getInstrumentation().waitForIdleSync()
+            scenario.onActivity { it.nextQuestion(assignment.survey.questions!![7]) }
+            InstrumentationRegistry.getInstrumentation().waitForIdleSync()
+            scenario.onActivity { assertTrue(it.answerReview().contains("1:05")) }
+        }
+    }
+
     private fun fixture() = Assignment(survey = Survey(name = "fixture", id = "fixture", title = "UI確認", questions = listOf(
         Question(type = "header", index = 0, title = "UI確認", text = "開始"),
         Question(type = "likert", index = 1, text = "5件法", likertMin = "低", likertMax = "高"),
         Question(type = "open", index = 2, text = "自由入力"),
         Question(type = "single", index = 3, text = "単一選択", singleMultipleAnswers = mutableListOf("A", "B")),
         Question(type = "multi", index = 4, text = "複数選択", multipleChoisesAnswers = mutableListOf("A", "B")),
-        Question(type = "blanks", index = 5, text = "穴埋め", fillBlanksChoises = mutableListOf("A", "B")),
+        Question(type = "blanks", index = 5, text = "私は _____ を選びました。", fillBlanksChoises = mutableListOf("A", "B")),
         Question(type = "duration", index = 6, text = "時間"),
         Question(type = "slider", index = 7, text = "スライダー"),
         Question(type = "footer", index = 8, text = "確認")
