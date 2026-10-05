@@ -77,6 +77,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adapter: SurveyAdapter
     lateinit var drawerToggle: ActionBarDrawerToggle
     private var inTestMode = false
+    private val accountAuth = com.alchembright.dev.langtrackapp.data.AccountAuthentication()
+    private var identityReady = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -128,8 +130,10 @@ class MainActivity : AppCompatActivity() {
         mBind.surveyRecyclerRefreshLayout.setColorSchemeColors(Color.WHITE)
 
         mBind.surveyRecyclerRefreshLayout.setOnRefreshListener {
-            if (mAuth.currentUser != null){
+            if (mAuth.currentUser != null && identityReady){
                 viewModel.getAssignments()
+            } else if (mAuth.currentUser != null) {
+                recreate()
             }
             mBind.surveyRecyclerRefreshLayout.isRefreshing = false
         }
@@ -242,25 +246,37 @@ class MainActivity : AppCompatActivity() {
         } else {
             val user = mAuth.currentUser ?: return
             val dev = com.alchembright.dev.langtrackapp.util.ProjectEnvironment.isDev
-            if (dev && viewModel.getCurrentUser().id.isEmpty()) {
-                com.alchembright.dev.langtrackapp.util.ProjectEnvironment.openLogin(this)
-                return
-            }
-            val userName = user.email?.substringBefore('@') ?: ""
-            if (!dev) viewModel.setCurrentUser(User(userName, userName, user.email ?: ""))
-            mBind.leftDrawerMenu.menuUserNameTextView.text = user.displayName ?: userName
+            identityReady = false
+            viewModel.clearAssignmentsList()
             mBind.leftDrawerMenu.menuVersionTextView.text = getString(R.string.version_label, verNum)
-            user.getIdToken(false).addOnSuccessListener(this) { result ->
-                if (mAuth.currentUser?.uid == user.uid && !result.token.isNullOrBlank()) {
-                    viewModel.setIdToken(result.token!!)
-                    viewModel.getAssignments()
-                    if (!dev) viewModel.postDeviceToken()
+            accountAuth.resolve { id, token ->
+                if (id == null || token == null) {
+                    viewModel.setCurrentUser(User())
+                    viewModel.setIdToken("")
+                    viewModel.clearAssignmentsList()
+                    com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+                        .setMessage(R.string.account_connection_failed)
+                        .setPositiveButton(R.string.account_retry_connection) { _, _ -> recreate() }
+                        .setNegativeButton(android.R.string.cancel, null)
+                        .show()
+                    return@resolve
+                }
+                viewModel.setCurrentUser(User(id, id, user.email ?: ""))
+                viewModel.setIdToken(token)
+                identityReady = true
+                mBind.leftDrawerMenu.menuUserNameTextView.text = user.displayName ?: id
+                viewModel.getAssignments()
+                if (!dev) {
+                    viewModel.postDeviceToken()
+                    FirebaseMessaging.getInstance().subscribeToTopic(id)
                 }
             }
             // A build has one isolated project; never offer the legacy staging toggle.
             mBind.leftDrawerMenu.testView.visibility = View.GONE
         }
     }
+
+    override fun onDestroy() { accountAuth.close(); super.onDestroy() }
 
     private fun setTestModeIfTeam(userName: String){
         /*
@@ -272,7 +288,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun unsubscribeToTopic(){
-        val topic = viewModel.getCurrentUser().userName
+        val topic = viewModel.getCurrentUser().id
         if (topic != "") {
             FirebaseMessaging.getInstance().unsubscribeFromTopic(topic)
                 .addOnCompleteListener { task ->
@@ -301,8 +317,11 @@ class MainActivity : AppCompatActivity() {
             override fun popupReturn(value: Boolean) {
                 if (value){
                     viewModel.clearAssignmentsList()
-                    mAuth.signOut()
+                    identityReady = false
                     if (!com.alchembright.dev.langtrackapp.util.ProjectEnvironment.isDev) unsubscribeToTopic()
+                    mAuth.signOut()
+                    viewModel.setCurrentUser(User())
+                    viewModel.setIdToken("")
                     com.alchembright.dev.langtrackapp.util.ProjectEnvironment.openLogin(this@MainActivity)
                 }
             }

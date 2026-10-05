@@ -1,0 +1,11 @@
+# Username authentication preparation (2026-10-05)
+
+Proto login first checks the selected server's `auth/options`. An explicit enabled response uses `auth/username-login`, then Firebase custom-token sign-in. Only HTTP 401 permits legacy Firebase email/password fallback, preserving unchanged respondents. HTTP 429, service failures, network failures and malformed responses do not downgrade authentication. Explicitly disabled capabilities, or HTTP 404 from a pre-module server, use legacy authentication. Entered email addresses use Firebase directly. Password whitespace is retained.
+
+Both Proto and Dev resolve Firebase identity via `/api/me` before loading assignments or registering the device. No email-prefix guessing occurs in these builds. Topic subscriptions use the returned user ID. The historical `legacy` build retains its original email-derived identity and remote URL behavior. No server, credentials, Firebase configuration or notification flags were changed.
+
+Deployment order: update and verify the server (including `/api/me` and all retained respondent UID mappings), then distribute the app. Verify existing respondents, both migrating researchers, a newly invited account, restored sessions, expired sessions and notification delivery in a dedicated test environment before credential removal. Dev offers its existing Google entry screen plus username sign-in for invited-account tests, with device registration and topic subscription disabled for Dev. Proto Google sign-in and in-app registration/recovery entry links remain follow-up work. Registration/recovery itself currently occurs on the Web.
+
+Local validation: Proto and Dev debug APK builds; Proto unit tests including three authentication routing tests (explicit enabled/disabled, broken capabilities, fallback restricted to 401). These tests do not replace live Firebase, API, device or notification end-to-end verification. No live account was used for this change.
+
+Read-only deployment check (2026-10-05, coordinator): Proto on port 8081 returned 404 for both `/api/me` and `/api/auth/options`; Dev on 8082 returned 401 for unauthenticated `/api/me` (route exists), and 404 for options. This app must not be distributed to Proto users yet: server rollout and respondent identity mapping verification are prerequisites.

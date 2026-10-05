@@ -103,4 +103,7 @@
     <string name="contact_description">For technical issues or questions about the survey, please contact:</string>
     <string name="error_title">Error</string>
     <string name="not_available">N/A</string>
+    <string name="account_connection_failed">Could not verify your project access. Check your connection and try again.</string>
+    <string name="account_retry_connection">Retry connection</string>
+    <string name="account_username_sign_in">Sign in with username</string>
 </resources>

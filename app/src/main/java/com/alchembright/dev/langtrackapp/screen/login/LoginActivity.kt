@@ -16,7 +16,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Patterns
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -28,10 +27,10 @@ import com.alchembright.dev.langtrackapp.R
 import com.alchembright.dev.langtrackapp.data.model.User
 import com.alchembright.dev.langtrackapp.databinding.LoginActivityBinding
 import com.alchembright.dev.langtrackapp.popup.PopupAlert
-import java.util.regex.Pattern
 
 class LoginActivity : AppCompatActivity() {
 
+    private val accountAuth = com.alchembright.dev.langtrackapp.data.AccountAuthentication()
     lateinit var mBind: LoginActivityBinding
     private lateinit var viewModel : LoginViewModel
 
@@ -66,7 +65,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun checkTextAndLogIn(){
         val username = mBind.logInEmailEditText.text.toString().trim()
-        val password = mBind.logInPasswordEditText.text.toString().trim()
+        val password = mBind.logInPasswordEditText.text.toString()
 
         if (username.isEmpty()){
             mBind.logInEmailEditText.error = getString(R.string.enterUserName)
@@ -81,17 +80,41 @@ class LoginActivity : AppCompatActivity() {
         }
         mBind.loginProgressbar.visibility = View.VISIBLE
 
-        val userEmail = "${username}@humlablu.com"
-        if (!isValidEmail(userEmail)){
-            return
+        mBind.logInButton.isEnabled = false
+        accountAuth.login(username, password) { successful ->
+            if (!successful) loginFailed()
+            else accountAuth.resolve { id, token ->
+                if (id == null || token == null) {
+                    FirebaseAuth.getInstance().signOut()
+                    viewModel.mRepository.setCurrentUser(User())
+                    viewModel.mRepository.idToken = ""
+                    viewModel.mRepository.emptyAssignmentsList()
+                    loginFailed()
+                }
+                else {
+                    val user = FirebaseAuth.getInstance().currentUser
+                    viewModel.setCurrentUser(User(id, username, user?.email ?: ""))
+                    viewModel.mRepository.idToken = token
+                    if (com.alchembright.dev.langtrackapp.util.ProjectEnvironment.isDev) {
+                        startActivity(Intent(this, com.alchembright.dev.langtrackapp.screen.main.MainActivity::class.java)
+                            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP))
+                    } else {
+                        viewModel.putDeviceToken()
+                        subscribeToTopic(id)
+                    }
+                    finish()
+                }
+            }
         }
-        logIn(userEmail,password)
     }
 
-    private fun isValidEmail(email: String): Boolean{
-        val pattern: Pattern = Patterns.EMAIL_ADDRESS
-        return pattern.matcher(email).matches()
+    private fun loginFailed() {
+        mBind.loginProgressbar.visibility = View.GONE
+        mBind.logInButton.isEnabled = true
+        Toast.makeText(this, getString(R.string.authenticationFailed), Toast.LENGTH_SHORT).show()
     }
+
+    override fun onDestroy() { accountAuth.close(); super.onDestroy() }
 
     fun subscribeToTopic(topic:String){
         FirebaseMessaging.getInstance().subscribeToTopic(topic)
@@ -104,34 +127,6 @@ class LoginActivity : AppCompatActivity() {
             }
     }
 
-
-    fun logIn(email: String, password: String){
-        val mAuth = FirebaseAuth.getInstance()
-        mAuth.signInWithEmailAndPassword(email,password)
-            .addOnCompleteListener {
-                mBind.loginProgressbar.visibility = View.GONE
-                if (it.isSuccessful){
-                    val userEmail = mAuth.currentUser!!.email
-                    val userName = userEmail?.substringBefore('@')
-                    if (!userName.isNullOrEmpty()) {
-                        viewModel.setCurrentUser(
-                            User(
-                                id = userName,
-                                name = userName,
-                                mail = userEmail
-                            )
-                        )
-                        viewModel.putDeviceToken()
-                        subscribeToTopic(userName)
-                    }
-                    onBackPressedDispatcher.onBackPressed()
-                }else{
-                    Toast.makeText(this@LoginActivity,
-                        getString(R.string.authenticationFailed),
-                        Toast.LENGTH_SHORT).show()
-                }
-            }
-    }
 
     companion object{
         fun start(context: Context){

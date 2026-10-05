@@ -30,6 +30,7 @@ import java.util.concurrent.TimeUnit
 class DevSetupActivity : AppCompatActivity() {
     private lateinit var status: TextView
     private lateinit var signIn: Button
+    private lateinit var usernameSignIn: Button
     private lateinit var signOut: Button
     private lateinit var retry: Button
     private lateinit var spinner: ProgressBar
@@ -42,6 +43,13 @@ class DevSetupActivity : AppCompatActivity() {
         check(FirebaseApp.getInstance().options.projectId == "kirokun-dev" && packageName == "com.alchembright.kirokun.dev") { "Dev Firebase configuration mismatch" }
         status = TextView(this).apply { text = getString(R.string.dev_login_intro); textSize = 18f }
         signIn = com.google.android.material.button.MaterialButton(this).apply { setText(R.string.dev_google_sign_in); setOnClickListener { googleSignIn() } }
+        usernameSignIn = com.google.android.material.button.MaterialButton(this).apply {
+            setText(R.string.account_username_sign_in)
+            setOnClickListener {
+                com.alchembright.dev.langtrackapp.screen.login.LoginActivity.start(this@DevSetupActivity)
+                finish()
+            }
+        }
         signOut = com.google.android.material.button.MaterialButton(this).apply { setText(R.string.dev_sign_out); setOnClickListener { generation++; auth.signOut(); status.setText(R.string.dev_login_intro); render(false) } }
         retry = com.google.android.material.button.MaterialButton(this).apply { setText(R.string.dev_retry_connection); setOnClickListener { checkConnection() } }
         spinner = ProgressBar(this)
@@ -51,7 +59,7 @@ class DevSetupActivity : AppCompatActivity() {
             addView(com.google.android.material.button.MaterialButton(this@DevSetupActivity).apply {
                 com.alchembright.dev.langtrackapp.util.ProjectEnvironment.bindSelector(this)
             })
-            addView(status); addView(signIn); addView(retry); addView(signOut); addView(spinner)
+            addView(status); addView(signIn); addView(usernameSignIn); addView(retry); addView(signOut); addView(spinner)
         })
         applySystemBarInsets()
         render(false)
@@ -59,9 +67,10 @@ class DevSetupActivity : AppCompatActivity() {
     }
     private fun render(busy: Boolean) {
         spinner.visibility = if (busy) View.VISIBLE else View.GONE
-        signIn.isEnabled = !busy; retry.isEnabled = !busy; signOut.isEnabled = !busy
+        signIn.isEnabled = !busy; usernameSignIn.isEnabled = !busy; retry.isEnabled = !busy; signOut.isEnabled = !busy
         val signedIn = auth.currentUser != null
         signIn.visibility = if (signedIn) View.GONE else View.VISIBLE
+        usernameSignIn.visibility = if (signedIn) View.GONE else View.VISIBLE
         signOut.visibility = if (signedIn) View.VISIBLE else View.GONE
         retry.visibility = if (signedIn) View.VISIBLE else View.GONE
     }
