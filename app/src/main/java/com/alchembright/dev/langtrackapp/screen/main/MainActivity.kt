@@ -83,6 +83,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (!com.alchembright.dev.langtrackapp.util.ProjectEnvironment.isDev) {
+            com.alchembright.dev.langtrackapp.util.KirokunNotifications.ensureChannel(this)
+        }
         if (!com.alchembright.dev.langtrackapp.util.ProjectEnvironment.isDev && android.os.Build.VERSION.SDK_INT >= 33 &&
             ContextCompat.checkSelfPermission(this, POST_NOTIFICATIONS) == PackageManager.PERMISSION_DENIED) {
             ActivityCompat.requestPermissions(this, arrayOf(POST_NOTIFICATIONS), 112)

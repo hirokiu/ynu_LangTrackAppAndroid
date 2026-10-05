@@ -36,3 +36,21 @@ These are application SDK/network integration tests, not tapped UI/notification 
 Dev still disables push service, device registration and topic subscription.
 Proto distribution remains blocked on server /me rollout and all respondent UID
 mapping verification. User-driven Google additional linking remains deferred.
+
+## Notification preparation (2026-10-06)
+
+Replaced automatic activity launch on message receipt with a standard notification
+and immutable activity PendingIntent. Added a monochrome small icon and localized
+channel name. Foreground app startup initializes the same default channel used by
+FCM background notifications. Denied permission/disabled notifications are respected;
+notification bodies and tokens are no longer printed by the messaging service.
+Dev still removes this service and skips registration/subscriptions.
+
+ProtoDebug/DevDebug and test APK builds passed. NotificationConstructionTest passed
+on API 37: Japanese content, private visibility, auto-cancel, immutable activity tap
+intent and channel setting preservation. No notification was posted by this test.
+Actual FCM receipt, background/terminated behavior and tapping remain unverified.
+User will connect a physical device later. No app distribution or server update occurred.
+
+Reference: https://firebase.google.com/docs/cloud-messaging/android/receive-messages
+and https://developer.android.com/develop/ui/views/notifications/navigation .

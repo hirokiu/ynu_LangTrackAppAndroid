@@ -99,4 +99,5 @@
     <string name="account_connection_failed">プロジェクトへの接続を確認できませんでした。通信状態を確認して再度お試しください。</string>
     <string name="account_retry_connection">再接続</string>
     <string name="account_username_sign_in">ユーザー名でログイン</string>
+    <string name="notification_channel_surveys">アンケートのお知らせ</string>
 </resources>

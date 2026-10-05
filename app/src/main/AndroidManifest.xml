@@ -16,6 +16,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
+        <meta-data android:name="com.google.firebase.messaging.default_notification_channel_id" android:value="kirokun_surveys" />
         <!-- Firebase Messaging -->
         <service
             android:name="com.alchembright.dev.langtrackapp.util.MyFirebaseInstanceIDService"
@@ -30,7 +31,7 @@
         -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/kirokun_logo" />
+            android:resource="@drawable/kirokun_notification" />
         <!--
  Set color used with incoming notification messages. This is used when no color is set for the incoming
              notification message. See README(https://goo.gl/6BKBk7) for more.
