@@ -9,3 +9,30 @@ Deployment order: update and verify the server (including `/api/me` and all reta
 Local validation: Proto and Dev debug APK builds; Proto unit tests including three authentication routing tests (explicit enabled/disabled, broken capabilities, fallback restricted to 401). These tests do not replace live Firebase, API, device or notification end-to-end verification. No live account was used for this change.
 
 Read-only deployment check (2026-10-05, coordinator): Proto on port 8081 returned 404 for both `/api/me` and `/api/auth/options`; Dev on 8082 returned 401 for unauthenticated `/api/me` (route exists), and 404 for options. This app must not be distributed to Proto users yet: server rollout and respondent identity mapping verification are prerequisites.
+
+## Live Dev integration — 2026-10-06
+
+`InvitedAccountDevTest.usernameLoginAndAnswerRoundTrip` passed on isolated read-only
+emulator instances at API 23 and API 37. It invokes the application's actual
+AccountAuthentication and Repository: username/custom-token login, /me resolution,
+assignment retrieval, Japanese answer submission, and persisted-answer reread.
+The server independently confirmed both mobile answers; the two temporary assignments
+were removed. Existing researcher/respondent accounts were not changed.
+
+The first API 23 run revealed that Android 6 ignores networkSecurityConfig, while
+the Dev manifest denied cleartext. DevDebug now allows cleartext via the manifest
+for that OS; on API 24+ the network security config still limits it to localhost.
+The API URL remains the fixed localhost SSH/adb-reverse endpoint. This change is
+limited to DevDebug; Proto and DevRelease manifests are unchanged.
+
+The test skips unless files/kirokun-private-qa.json is explicitly installed into
+a dedicated Dev emulator. It checks package, Firebase project and API URL before
+using it, and refuses to replace a different signed-in identity. Required string
+fields: username, password, uid, userId, androidAssignment. Never commit the file.
+For adb transfer, use non-PTY exec-in with stdout suppressed; interactive shell
+input can echo secrets. Test cleanup signs out; remove the private fixture afterward.
+
+These are application SDK/network integration tests, not tapped UI/notification tests.
+Dev still disables push service, device registration and topic subscription.
+Proto distribution remains blocked on server /me rollout and all respondent UID
+mapping verification. User-driven Google additional linking remains deferred.
