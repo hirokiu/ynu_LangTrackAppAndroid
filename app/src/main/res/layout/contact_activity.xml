@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/lta_blue"
+        android:background="@color/kirokun_brand"
         tools:context=".screen.contact.ContactActivity"
         android:animateLayoutChanges="true">
 
@@ -14,7 +14,7 @@
             android:id="@+id/contactTopView"
             android:layout_width="0dp"
             android:layout_height="120dp"
-            android:background="@color/lta_blue"
+            android:background="@color/kirokun_brand"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -25,7 +25,7 @@
             android:id="@+id/contactScroll"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@color/lta_light_grey"
+            android:background="@color/kirokun_surface"
             android:scrollbars="none"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +50,7 @@
                     android:layout_marginEnd="2dp"
                     android:paddingStart="5dp"
                     android:paddingEnd="5dp"
-                    app:cardBackgroundColor="@color/lta_light_grey"
+                    app:cardBackgroundColor="@color/kirokun_surface"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="3dp"
                     app:cardUseCompatPadding="true">
@@ -59,7 +59,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="4dp"
-                        android:background="@color/lta_light_grey"
+                        android:background="@color/kirokun_surface"
                         android:gravity="center_horizontal"
                         android:orientation="vertical">
 
@@ -76,7 +76,7 @@
                             android:focusable="true"
 			    android:text="@string/reserchText1"
                             android:textAlignment="textStart"
-                            android:textColor="@color/lta_blue"
+                            android:textColor="@color/lta_text"
                             android:textSize="16sp" />
 
                     </LinearLayout>
@@ -94,7 +94,7 @@
             android:layout_height="wrap_content"
             android:elevation="10dp"
             android:text="@string/contakt"
-            android:textColor="@color/lta_light_grey"
+            android:textColor="@color/kirokun_on_brand"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@+id/contactTopView"
             app:layout_constraintEnd_toEndOf="parent"
@@ -111,9 +111,10 @@
             android:elevation="8dp"
             android:scaleType="centerInside"
             android:src="@drawable/close_icon"
+        app:tint="@color/kirokun_on_brand"
             android:text=""
             android:textAllCaps="false"
-            android:textColor="@color/lta_blue"
+            android:textColor="@color/lta_text"
             android:textSize="21sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

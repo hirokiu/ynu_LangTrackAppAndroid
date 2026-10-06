@@ -60,7 +60,7 @@ class AboutActivity : AppCompatActivity() {
             val spannableHeader = SpannableString(getString(R.string.team))
             val boldSpan = StyleSpan(Typeface.BOLD)
             val sizeSpan = RelativeSizeSpan(1.3f)
-            val colourSpan = ForegroundColorSpan(getColor(R.color.lta_blue))
+            val colourSpan = ForegroundColorSpan(getColor(R.color.kirokun_brand))
             spannableHeader.setSpan(boldSpan,0,getString(R.string.team).count(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
             spannableHeader.setSpan(sizeSpan,0,getString(R.string.team).count(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
             spannableHeader.setSpan(colourSpan,0,getString(R.string.team).count(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE)

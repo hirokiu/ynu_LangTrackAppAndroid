@@ -47,7 +47,7 @@ class InstructionsActivity : AppCompatActivity() {
         val spannableHeader = SpannableString(getString(R.string.dataProcessingHeader))
         val boldSpan = StyleSpan(Typeface.BOLD)
         val sizeSpan = RelativeSizeSpan(1.1f)
-        val colourSpan = ForegroundColorSpan(getColor(R.color.lta_blue))
+        val colourSpan = ForegroundColorSpan(getColor(R.color.kirokun_brand))
         val length = getString(R.string.dataProcessingHeader).count()
         spannableHeader.setSpan(boldSpan,0,length , Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
         spannableHeader.setSpan(sizeSpan,0,length, Spannable.SPAN_INCLUSIVE_EXCLUSIVE)

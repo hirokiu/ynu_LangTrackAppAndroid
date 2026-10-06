@@ -112,3 +112,12 @@ requested. Drawer filled buttons explicitly use kirokun_brand/kirokun_on_brand;
 brand text and project selector no longer inherit the dark red primary color.
 The answered overview logo is removed and its 100dp title gap reduced to 16dp.
 DevDebug and ProtoDebug builds passed; installed on OPPO for user visual confirmation.
+
+## Version and submenu alignment — 2026-10-07
+
+Android versionName is now 2.0.0, matching iOS MARKETING_VERSION. Android versionCode
+increases from 3 to 4; platform-specific build counters are not reset to match iOS.
+Instructions, About and Contact use kirokun_brand for headers, kirokun_on_brand for
+header text/close icons, white surfaces and neutral body text. Programmatic heading
+spans use the brand color rather than legacy dark red. Layout/content are preserved.
+DevDebug and ProtoDebug builds passed; Dev installed on OPPO. Store release not performed.

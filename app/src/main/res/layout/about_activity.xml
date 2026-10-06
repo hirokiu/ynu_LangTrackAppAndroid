@@ -6,7 +6,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lta_blue"
+    android:background="@color/kirokun_brand"
     tools:context=".screen.about.AboutActivity"
     android:animateLayoutChanges="true">
 
@@ -14,7 +14,7 @@
         android:id="@+id/aboutTopView"
         android:layout_width="0dp"
         android:layout_height="120dp"
-        android:background="@color/lta_blue"
+        android:background="@color/kirokun_brand"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,7 +24,7 @@
         android:id="@+id/aboutScroll"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/lta_light_grey"
+        android:background="@color/kirokun_surface"
         android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +49,7 @@
                 android:layout_marginEnd="2dp"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
-                app:cardBackgroundColor="@color/lta_light_grey"
+                app:cardBackgroundColor="@color/kirokun_surface"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="3dp"
                 app:cardUseCompatPadding="true">
@@ -58,7 +58,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="4dp"
-                    android:background="@color/lta_light_grey"
+                    android:background="@color/kirokun_surface"
                     android:gravity="start"
                     android:orientation="vertical">
 
@@ -75,7 +75,7 @@
                         android:paddingBottom="8dp"
                         android:text="@string/menuProjectAbout"
                         android:textAlignment="textStart"
-                        android:textColor="@color/lta_blue"
+                        android:textColor="@color/lta_text"
                         android:textSize="17sp" />
 
                     <!--<TextView
@@ -100,7 +100,7 @@
                 android:layout_marginEnd="2dp"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
-                app:cardBackgroundColor="@color/lta_light_grey"
+                app:cardBackgroundColor="@color/kirokun_surface"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="3dp"
                 app:cardUseCompatPadding="true">
@@ -109,7 +109,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="4dp"
-                    android:background="@color/lta_light_grey"
+                    android:background="@color/kirokun_surface"
                     android:gravity="center_horizontal"
                     android:orientation="vertical">
 
@@ -122,7 +122,7 @@
                         android:background="@android:color/transparent"
                         android:text="@string/team"
                         android:textAlignment="textStart"
-                        android:textColor="@color/lta_blue"
+                        android:textColor="@color/lta_text"
                         android:textSize="18sp"
 		        android:textStyle="bold" />
 
@@ -137,7 +137,7 @@
                         android:focusable="true"
 			android:text="@string/marianneInfo"
                         android:textAlignment="textStart"
-                        android:textColor="@color/lta_blue"
+                        android:textColor="@color/lta_text"
                         android:textSize="16sp"/>
 
                     <TextView
@@ -151,7 +151,7 @@
                         android:focusable="true"
 			android:text="@string/jonasInfo"
                         android:textAlignment="textStart"
-                        android:textColor="@color/lta_blue"
+                        android:textColor="@color/lta_text"
                         android:textSize="16sp"/>
 
                     <TextView
@@ -165,7 +165,7 @@
                         android:focusable="true"
 			android:text="@string/henrietteInfo"
                         android:textAlignment="textStart"
-                        android:textColor="@color/lta_blue"
+                        android:textColor="@color/lta_text"
                         android:textSize="16sp"/>
 
                     <TextView
@@ -179,7 +179,7 @@
                         android:focusable="true"
 			android:text="@string/josefInfo"
                         android:textAlignment="textStart"
-                        android:textColor="@color/lta_blue"
+                        android:textColor="@color/lta_text"
                         android:textSize="16sp" />
 
                     <TextView
@@ -193,7 +193,7 @@
                         android:focusable="true"
 			android:text="@string/stephanInfo"
                         android:textAlignment="textStart"
-                        android:textColor="@color/lta_blue"
+                        android:textColor="@color/lta_text"
                         android:textSize="16sp" />
 
                     <TextView
@@ -218,7 +218,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Om"
-        android:textColor="@color/lta_light_grey"
+        android:textColor="@color/kirokun_on_brand"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/aboutTopView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -236,9 +236,10 @@
         android:elevation="8dp"
         android:scaleType="centerInside"
         android:src="@drawable/close_icon"
+        app:tint="@color/kirokun_on_brand"
         android:text=""
         android:textAllCaps="false"
-        android:textColor="@color/lta_blue"
+        android:textColor="@color/lta_text"
         android:textSize="21sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
