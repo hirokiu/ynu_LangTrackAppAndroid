@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@string/menu"
-            android:textColor="@color/lta_blue"
+            android:textColor="@color/kirokun_brand"
             android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +43,7 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="20dp"
             android:text="@string/loggedInAs"
-            android:textColor="@color/lta_blue"
+            android:textColor="@color/kirokun_brand"
             android:textSize="12sp"
             android:textStyle="italic"
             app:layout_constraintStart_toStartOf="@+id/view"
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text=""
-            android:textColor="@color/lta_blue"
+            android:textColor="@color/kirokun_brand"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/menuLoggedInAsTextView"
@@ -68,7 +68,7 @@
             android:layout_marginEnd="12dp"
             android:padding="5dp"
             android:text="@string/logOut"
-            android:textColor="@color/lta_blue"
+            android:textColor="@color/kirokun_brand"
             android:textSize="12sp"
             android:textStyle="italic"
             app:layout_constraintBaseline_toBaselineOf="@+id/menuUserNameTextView"
@@ -81,12 +81,14 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
-            android:background="@color/lta_blue"
+            android:background="@color/kirokun_brand"
             app:layout_constraintEnd_toEndOf="@+id/view"
             app:layout_constraintStart_toStartOf="@+id/view"
             app:layout_constraintTop_toBottomOf="@+id/menuUserNameTextView" />
 
         <com.google.android.material.button.MaterialButton
+            app:backgroundTint="@color/kirokun_brand"
+            android:textColor="@color/kirokun_on_brand"
             android:id="@+id/menuInstructionsContactButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -102,6 +104,8 @@
             app:layout_constraintTop_toBottomOf="@+id/view2" />
 
         <com.google.android.material.button.MaterialButton
+            app:backgroundTint="@color/kirokun_brand"
+            android:textColor="@color/kirokun_on_brand"
             android:id="@+id/menuContactButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -117,6 +121,8 @@
             app:layout_constraintTop_toBottomOf="@+id/menuInstructionsContactButton" />
 
         <com.google.android.material.button.MaterialButton
+            app:backgroundTint="@color/kirokun_brand"
+            android:textColor="@color/kirokun_on_brand"
             android:id="@+id/menuAboutButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -131,7 +137,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/menuContactButton" />
 
-        <com.google.android.material.button.MaterialButton android:id="@+id/projectSelector" style="@style/Widget.Material3.Button.TextButton" android:layout_width="0dp" android:layout_height="wrap_content" android:text="@string/project_switch" app:layout_constraintTop_toBottomOf="@id/menuAboutButton" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/projectSelector" android:textColor="@color/kirokun_brand" style="@style/Widget.Material3.Button.TextButton" android:layout_width="0dp" android:layout_height="wrap_content" android:text="@string/project_switch" app:layout_constraintTop_toBottomOf="@id/menuAboutButton" app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" />
         <LinearLayout
             android:id="@+id/testView"
             android:layout_width="0dp"

@@ -102,3 +102,13 @@ exit animation completion and rechecks session generation and UID. Proto routes
 from its existing launcher after that callback. Launcher icons remain distinct.
 DevDebug/ProtoDebug builds passed. OPPO visual confirmation remains necessary;
 this is an Android transition, not an override of its OS-owned splash.
+
+### OPPO visual follow-up
+
+The inset icon was still visibly cropped on OPPO, so the OS splash now uses an
+explicit transparent vector: theme background only, followed by the existing glass
+artwork transition. No launcher icon fallback or extra minimum display timer is
+requested. Drawer filled buttons explicitly use kirokun_brand/kirokun_on_brand;
+brand text and project selector no longer inherit the dark red primary color.
+The answered overview logo is removed and its 100dp title gap reduced to 16dp.
+DevDebug and ProtoDebug builds passed; installed on OPPO for user visual confirmation.
