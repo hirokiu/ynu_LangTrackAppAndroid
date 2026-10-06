@@ -37,7 +37,7 @@ class MyFirebaseInstanceIDService: FirebaseMessagingService() {
         }
         val title = message.notification?.title ?: getString(R.string.app_name)
         val body = message.notification?.body ?: message.data[MESSAGE_TEXT] ?: return
-        KirokunNotifications.show(this, title, body, message.messageId ?: java.util.UUID.randomUUID().toString())
+        KirokunNotifications.show(this, title, body, message.messageId ?: java.util.UUID.randomUUID().toString(), message.data)
     }
 }
 
@@ -49,9 +49,11 @@ internal object KirokunNotifications {
                 NotificationChannel(CHANNEL_ID, context.getString(R.string.notification_channel_surveys), NotificationManager.IMPORTANCE_DEFAULT))
         }
     }
-    fun build(context: Context, title: String, body: String): android.app.Notification {
+    fun build(context: Context, title: String, body: String, data: Map<String, String> = emptyMap()): android.app.Notification {
         ensureChannel(context)
         val intent = Intent(context, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        data.filterKeys { it in listOf("kirokunAssignmentId", "kirokunUserId", "kirokunEnvironment") }.forEach { (key, value) -> intent.putExtra(key, value) }
+        intent.data = android.net.Uri.parse("kirokun://notification/" + java.util.UUID.randomUUID().toString())
         val action = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
         return NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.kirokun_notification)
@@ -63,12 +65,12 @@ internal object KirokunNotifications {
             .setDefaults(NotificationCompat.DEFAULT_SOUND)
             .build()
     }
-    fun show(context: Context, title: String, body: String, messageId: String) {
+    fun show(context: Context, title: String, body: String, messageId: String, data: Map<String, String> = emptyMap()) {
         if (Build.VERSION.SDK_INT >= 33 && ContextCompat.checkSelfPermission(context,
                 android.Manifest.permission.POST_NOTIFICATIONS) != android.content.pm.PackageManager.PERMISSION_GRANTED) return
         val manager = NotificationManagerCompat.from(context)
         if (!manager.areNotificationsEnabled()) return
-        try { manager.notify(messageId, 0, build(context, title, body)) }
+        try { manager.notify(messageId, 0, build(context, title, body, data)) }
         catch (_: SecurityException) { /* Permission may have been revoked while receiving. */ }
     }
 }

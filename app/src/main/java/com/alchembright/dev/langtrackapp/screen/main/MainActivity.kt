@@ -79,10 +79,34 @@ class MainActivity : AppCompatActivity() {
     private var inTestMode = false
     private val accountAuth = com.alchembright.dev.langtrackapp.data.AccountAuthentication()
     private var identityReady = false
+    private var resolvedNotificationUser = ""
 
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        com.alchembright.dev.langtrackapp.util.NotificationTarget.capture(this, intent)
+        if (identityReady) viewModel.getAssignments()
+    }
+
+    private fun openNotificationTarget(items: List<Assignment>) {
+        val id = com.alchembright.dev.langtrackapp.util.NotificationTarget.consume(this, resolvedNotificationUser) ?: return
+        val item = items.firstOrNull { it.id == id }
+        if (item == null) {
+            android.widget.Toast.makeText(this, R.string.notification_survey_unavailable, android.widget.Toast.LENGTH_LONG).show()
+            return
+        }
+        viewModel.setSelectedAssignment(item)
+        if (item.dataset != null) OverviewActivity.start(this, item)
+        else if (item.isActive()) {
+            SurveyContainerActivity.start(this, item, false)
+            viewModel.surveyOpened()
+        } else showPopupSurveyInfo(item)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        com.alchembright.dev.langtrackapp.util.NotificationTarget.capture(this, intent)
         if (!com.alchembright.dev.langtrackapp.util.ProjectEnvironment.isDev) {
             com.alchembright.dev.langtrackapp.util.KirokunNotifications.ensureChannel(this)
         }
@@ -181,6 +205,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.assignmentListLiveData.observe(this) {
             adapter.setAssignments(it)
+            if (identityReady && it != null) openNotificationTarget(it)
             if (it.isNullOrEmpty()){
                 mBind.surveyRecyclerRefreshLayout.visibility = View.GONE
                 mBind.mainEmptyListInfoTextView.visibility = View.VISIBLE
@@ -267,6 +292,7 @@ class MainActivity : AppCompatActivity() {
                 viewModel.setCurrentUser(User(id, id, user.email ?: ""))
                 viewModel.setIdToken(token)
                 identityReady = true
+                resolvedNotificationUser = id
                 mBind.leftDrawerMenu.menuUserNameTextView.text = user.displayName ?: id
                 viewModel.getAssignments()
                 if (!dev) {

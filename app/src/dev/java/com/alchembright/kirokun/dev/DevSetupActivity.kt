@@ -43,6 +43,7 @@ class DevSetupActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         val splash = installSplashScreen()
         super.onCreate(savedInstanceState)
+        com.alchembright.dev.langtrackapp.util.NotificationTarget.capture(this, intent)
         configureLaunchArtwork(splash) {
             launchArtworkFinished = true
             pendingNavigation?.invoke()

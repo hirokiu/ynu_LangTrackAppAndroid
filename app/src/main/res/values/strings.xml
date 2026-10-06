@@ -107,4 +107,5 @@
     <string name="account_retry_connection">Retry connection</string>
     <string name="account_username_sign_in">Sign in with username</string>
     <string name="notification_channel_surveys">Survey notifications</string>
+<string name="notification_survey_unavailable">This survey is currently unavailable. Please check the survey list.</string>
 </resources>

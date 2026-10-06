@@ -11,6 +11,7 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         val splash = installSplashScreen()
         super.onCreate(savedInstanceState)
+        com.alchembright.dev.langtrackapp.util.NotificationTarget.capture(this, intent)
         setContentView(com.alchembright.dev.langtrackapp.R.layout.splash_activity)
         configureLaunchArtwork(splash) {
             MainActivity.start(this)
