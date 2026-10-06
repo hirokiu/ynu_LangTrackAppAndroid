@@ -77,3 +77,15 @@ Proto users or production Firebase configuration were changed.
 ProtoDebug and DevRelease builds passed. Release build exposed a historical JPEG
 named lunds_universitet_small.png; renamed it to .jpg without changing the bytes.
 No end-to-end login/answer test was performed on this physical device in this pass.
+
+## OPPO connection and launch correction — 2026-10-06
+
+DevDebug now defaults to the authenticated HTTPS Dev API, matching DevRelease and
+physical iPhone builds. Local-only emulator integration tests explicitly use
+`-PdevLocalTunnel=true` with the SSH/adb reverse path; their loopback assertion remains.
+No credentials, Firebase identity, notification flags or Proto endpoint changed.
+The standard system splash icon now has a 132dp square inside a 288dp drawable,
+so its corners fit inside Android's 192dp safe circle. Both Dev and Proto share it.
+Android's system splash is a central icon, not the iOS full-screen ribbon artwork;
+this correction does not claim pixel-identical launch layouts across platforms.
+Reference: https://developer.android.com/develop/ui/views/launch/splash-screen

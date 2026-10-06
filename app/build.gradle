@@ -97,6 +97,8 @@ dependencies {
 }
     androidComponents {
         onVariants(selector().withFlavor("environment", "dev").withBuildType("debug")) { variant ->
+            if (providers.gradleProperty("devLocalTunnel").orNull == "true") {
             variant.buildConfigFields.put("API_BASE_URL", new com.android.build.api.variant.BuildConfigField("String", '"http://localhost:18082/api/"', "SSH tunnel via adb reverse"))
+            }
         }
     }

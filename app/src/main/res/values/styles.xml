@@ -18,7 +18,7 @@
 
     <style name="SplashTheme" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/kirokun_brand</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/kirokun_logo</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/kirokun_splash_icon</item>
         <item name="postSplashScreenTheme">@style/AppTheme.NoActionBar</item>
     </style>
 
