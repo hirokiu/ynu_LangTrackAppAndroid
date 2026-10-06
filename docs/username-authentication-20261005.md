@@ -89,3 +89,16 @@ so its corners fit inside Android's 192dp safe circle. Both Dev and Proto share 
 Android's system splash is a central icon, not the iOS full-screen ribbon artwork;
 this correction does not claim pixel-identical launch layouts across platforms.
 Reference: https://developer.android.com/develop/ui/views/launch/splash-screen
+
+## Shared glass launch artwork — 2026-10-06
+
+The iOS KirokunLaunchRibbon PNG is copied unchanged to drawable-nodpi and shared by
+Dev and Proto. Android retains its system SplashScreen API and safe-area logo,
+then uses its exit callback for a 450ms full-window branding fade. FIT_CENTER
+preserves the entire image, with theme-color margins on different aspect ratios.
+There is no fixed sleep, network-dependent splash hold, or extra branding text.
+Dev authentication can run concurrently; successful navigation waits only for the
+exit animation completion and rechecks session generation and UID. Proto routes
+from its existing launcher after that callback. Launcher icons remain distinct.
+DevDebug/ProtoDebug builds passed. OPPO visual confirmation remains necessary;
+this is an Android transition, not an override of its OS-owned splash.

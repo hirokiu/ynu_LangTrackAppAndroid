@@ -2,6 +2,7 @@ package com.alchembright.kirokun.dev
 
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.alchembright.dev.langtrackapp.util.applySystemBarInsets
+import com.alchembright.dev.langtrackapp.util.configureLaunchArtwork
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -37,9 +38,16 @@ class DevSetupActivity : AppCompatActivity() {
     private val auth get() = FirebaseAuth.getInstance()
     private val client = OkHttpClient.Builder().followRedirects(false).followSslRedirects(false).callTimeout(15, TimeUnit.SECONDS).build()
     private var generation = 0
+    private var launchArtworkFinished = false
+    private var pendingNavigation: (() -> Unit)? = null
     override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
+        val splash = installSplashScreen()
         super.onCreate(savedInstanceState)
+        configureLaunchArtwork(splash) {
+            launchArtworkFinished = true
+            pendingNavigation?.invoke()
+            pendingNavigation = null
+        }
         check(FirebaseApp.getInstance().options.projectId == "kirokun-dev" && packageName == "com.alchembright.kirokun.dev") { "Dev Firebase configuration mismatch" }
         if (BuildConfig.DEBUG && getSharedPreferences("push-qa", MODE_PRIVATE).getBoolean("enabled", false)
             && intent.getStringExtra("kirokunQA") == "device-only-20261006") {
@@ -122,8 +130,13 @@ class DevSetupActivity : AppCompatActivity() {
                                     val repo = com.alchembright.dev.langtrackapp.data.RepositoryFactory.getRepository(this@DevSetupActivity)
                                     repo.setCurrentUser(com.alchembright.dev.langtrackapp.data.model.User(userId, userId, user.email ?: ""))
                                     repo.idToken = token
-                                    com.alchembright.dev.langtrackapp.screen.main.MainActivity.start(this@DevSetupActivity)
-                                    finish()
+                                    val navigate = {
+                                        if (!isDestroyed && requestGeneration == generation && auth.currentUser?.uid == user.uid) {
+                                            com.alchembright.dev.langtrackapp.screen.main.MainActivity.start(this@DevSetupActivity)
+                                            finish()
+                                        }
+                                    }
+                                    if (launchArtworkFinished) navigate() else pendingNavigation = navigate
                                 }
                             }
                         } else showResult(if (it.code == 401 || it.code == 403) R.string.dev_not_authorized else R.string.dev_connection_failed, requestGeneration)
