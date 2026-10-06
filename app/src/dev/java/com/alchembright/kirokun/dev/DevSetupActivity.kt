@@ -41,6 +41,17 @@ class DevSetupActivity : AppCompatActivity() {
         installSplashScreen()
         super.onCreate(savedInstanceState)
         check(FirebaseApp.getInstance().options.projectId == "kirokun-dev" && packageName == "com.alchembright.kirokun.dev") { "Dev Firebase configuration mismatch" }
+        if (BuildConfig.DEBUG && getSharedPreferences("push-qa", MODE_PRIVATE).getBoolean("enabled", false)
+            && intent.getStringExtra("kirokunQA") == "device-only-20261006") {
+            java.io.File(filesDir, "kirokun-push-qa-tap.json").writeText(JSONObject()
+                .put("event", "tap").put("time", System.currentTimeMillis()).toString())
+        }
+        if (BuildConfig.DEBUG && getSharedPreferences("push-qa", MODE_PRIVATE).getBoolean("enabled", false)
+            && android.os.Build.VERSION.SDK_INT >= 33 && ContextCompat.checkSelfPermission(this,
+                android.Manifest.permission.POST_NOTIFICATIONS) != android.content.pm.PackageManager.PERMISSION_GRANTED) {
+            androidx.core.app.ActivityCompat.requestPermissions(this,
+                arrayOf(android.Manifest.permission.POST_NOTIFICATIONS), 113)
+        }
         status = TextView(this).apply { text = getString(R.string.dev_login_intro); textSize = 18f }
         signIn = com.google.android.material.button.MaterialButton(this).apply { setText(R.string.dev_google_sign_in); setOnClickListener { googleSignIn() } }
         usernameSignIn = com.google.android.material.button.MaterialButton(this).apply {

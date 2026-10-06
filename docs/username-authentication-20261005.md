@@ -54,3 +54,26 @@ User will connect a physical device later. No app distribution or server update 
 
 Reference: https://firebase.google.com/docs/cloud-messaging/android/receive-messages
 and https://developer.android.com/develop/ui/views/notifications/navigation .
+
+## Physical Android push — 2026-10-06
+
+Android 14 (CPH2603): Dev Firebase accepted a token-targeted notification, the
+DevDebug-only receiver recorded actual receipt, and a second notification sent
+while the user was on Home opened KIROKUN Dev when tapped. The user confirmed
+opening; the app also recorded the notification payload on launch.
+
+DevPushProvisioningTest requires explicit pushQa=true and checks the package and
+Firebase project before enabling a single-device token. DevPushQaService exists
+only in devDebug and requires the private QA flag plus the QA payload marker.
+Normal Dev never subscribes to a topic or updates server user device tokens.
+Provisioning uses the native notification permission prompt (this phone refused
+shell permission grants). Token files are private and never printed.
+
+After verification, disableSingleDeviceTest passed: automatic registration off,
+QA flag cleared, Firebase token deleted and app-side records removed. Temporary
+Android token files on Mac and server were also deleted. No regular scheduler,
+Proto users or production Firebase configuration were changed.
+
+ProtoDebug and DevRelease builds passed. Release build exposed a historical JPEG
+named lunds_universitet_small.png; renamed it to .jpg without changing the bytes.
+No end-to-end login/answer test was performed on this physical device in this pass.

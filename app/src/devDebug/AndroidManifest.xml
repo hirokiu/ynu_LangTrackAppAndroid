@@ -1,1 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"><application android:usesCleartextTraffic="true" tools:replace="android:usesCleartextTraffic" android:networkSecurityConfig="@xml/dev_network_security"/></manifest>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"><application android:usesCleartextTraffic="true" tools:replace="android:usesCleartextTraffic" android:networkSecurityConfig="@xml/dev_network_security">
+<service android:name="com.alchembright.kirokun.dev.DevPushQaService" android:exported="false">
+<intent-filter><action android:name="com.google.firebase.MESSAGING_EVENT"/></intent-filter>
+</service></application></manifest>
