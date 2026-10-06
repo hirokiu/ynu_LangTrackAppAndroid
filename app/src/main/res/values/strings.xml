@@ -108,4 +108,7 @@
     <string name="account_username_sign_in">Sign in with username</string>
     <string name="notification_channel_surveys">Survey notifications</string>
 <string name="notification_survey_unavailable">This survey is currently unavailable. Please check the survey list.</string>
+<string name="unanswered_badge_channel">Unanswered surveys</string>
+<string name="unanswered_badge_title">Unanswered surveys: %1$d</string>
+<string name="unanswered_badge_body">Open KIROKUN to answer.</string>
 </resources>

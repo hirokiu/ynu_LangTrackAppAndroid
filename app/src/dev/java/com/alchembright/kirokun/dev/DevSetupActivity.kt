@@ -70,7 +70,7 @@ class DevSetupActivity : AppCompatActivity() {
                 finish()
             }
         }
-        signOut = com.google.android.material.button.MaterialButton(this).apply { setText(R.string.dev_sign_out); setOnClickListener { generation++; auth.signOut(); status.setText(R.string.dev_login_intro); render(false) } }
+        signOut = com.google.android.material.button.MaterialButton(this).apply { setText(R.string.dev_sign_out); setOnClickListener { generation++; auth.signOut(); com.alchembright.dev.langtrackapp.util.UnansweredBadge.update(this@DevSetupActivity, 0); status.setText(R.string.dev_login_intro); render(false) } }
         retry = com.google.android.material.button.MaterialButton(this).apply { setText(R.string.dev_retry_connection); setOnClickListener { checkConnection() } }
         spinner = ProgressBar(this)
         setContentView(LinearLayout(this).apply {

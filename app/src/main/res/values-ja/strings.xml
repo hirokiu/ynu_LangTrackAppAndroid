@@ -101,4 +101,7 @@
     <string name="account_username_sign_in">ユーザー名でログイン</string>
     <string name="notification_channel_surveys">アンケートのお知らせ</string>
 <string name="notification_survey_unavailable">このアンケートは現在表示できません。一覧を確認してください。</string>
+<string name="unanswered_badge_channel">未回答アンケート数</string>
+<string name="unanswered_badge_title">未回答アンケート：%1$d件</string>
+<string name="unanswered_badge_body">KIROKUNを開いて回答してください。</string>
 </resources>

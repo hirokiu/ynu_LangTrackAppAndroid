@@ -50,6 +50,7 @@ class Repository(val context: Context) {
 
 
     fun setCurrentUser(user: User){
+        if (currentUser.id != user.id) UnansweredBadge.update(context, 0)
         currentUser = user
         currentUserLiveData.postValue(currentUser)
     }
@@ -411,6 +412,7 @@ class Repository(val context: Context) {
                             catch (_: Exception) { return }
                         android.os.Handler(android.os.Looper.getMainLooper()).post {
                             if (currentUser.id == requestedId && com.google.firebase.auth.FirebaseAuth.getInstance().currentUser?.uid == requestedUid) {
+                                UnansweredBadge.update(context, UnansweredBadge.count(items))
                                 assignmentList = items
                                 assignmentListLiveData.value = items
                             }
