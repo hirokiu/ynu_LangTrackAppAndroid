@@ -16,6 +16,6 @@ class DevPushQaService : FirebaseMessagingService() {
         File(filesDir, "kirokun-push-qa-received.json").writeText(JSONObject()
             .put("event", "received").put("projectId", "kirokun-dev").put("time", System.currentTimeMillis()).toString())
         KirokunNotifications.show(this, message.notification?.title ?: "KIROKUN Dev",
-            message.notification?.body ?: "通知テスト", message.messageId ?: "dev-qa")
+            message.notification?.body ?: "通知テスト", message.messageId ?: "dev-qa", message.data)
     }
 }

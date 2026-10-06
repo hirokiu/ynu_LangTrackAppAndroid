@@ -139,3 +139,12 @@ iOS Dev実機ビルド成功。回答済み検証Survey宛のPush1通をDev iPho
 新サーバーのops/state/push-qa-ios-20261007.jsonとMac非公開一時ファイルに検証トークン保持。
 確認後はiOS QA cleanup起動でトークン失効・ファイル削除し、通常起動へ戻すこと。
 未回答・期限切れ・削除済みの画面遷移、ログアウトからの復帰、Android実Push遷移は未確認。
+
+### Android実Push遷移の準備（2026-10-07）
+
+DevDebug専用受信サービスにも通知dataの引き継ぎを追加（通常受信サービスは対応済み）。
+DevDebugとinstrumentationビルド成功、OPPOへ配置し単体Push登録テスト成功。
+検証トークンはMac非公開ファイルと新サーバーops/state/push-qa-android-20261007.jsonで保持。
+ホーム画面への移動確認後、回答済み検証Survey宛の1台限定通知を送信予定。
+完了後はdisableSingleDeviceTestでトークン失効・QAファイル削除し、両一時ファイルも削除する。
+通常のDev/Proto通知スケジューラー・研究者データは変更していない。
