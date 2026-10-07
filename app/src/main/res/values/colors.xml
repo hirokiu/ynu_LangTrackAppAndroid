@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#B82433</color>
-    <color name="colorPrimaryDark">#B82433</color><!-- 00574B -->
-    <color name="colorAccent">#B82433</color>#
+    <color name="colorPrimary">@color/kirokun_brand</color>
+    <color name="colorPrimaryDark">@color/kirokun_brand</color><!-- 00574B -->
+    <color name="colorAccent">@color/kirokun_brand</color>#
     <color name="lta_gold">#33BAA081</color>#
-    <color name="lta_blue">#B82433</color>#
-    <color name="lta_midblue">#ABB82433</color>#
+    <color name="lta_blue">@color/kirokun_brand</color>#
+    <color name="lta_midblue">#ABFF5857</color>#
     <color name="lta_red">#96516F</color>#
     <color name="lta_brown">#BF9156</color>#
     <color name="lta_yellow">#D2C541</color>#
