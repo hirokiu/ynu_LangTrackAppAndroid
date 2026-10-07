@@ -1,79 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/popup_alert_background"
-    android:clipChildren="true"
-    android:clipToPadding="true">
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@drawable/popup_alert_background">
 
     <TextView
         android:id="@+id/popupOneChoiceTitleTextView"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="10dp"
         android:layout_marginBottom="12dp"
-        android:text=""
         android:textAlignment="center"
         android:textColor="@color/lta_blue"
         android:textSize="19sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/popupOneChoiceInfoTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/popupOneChoiceInfoTextView"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="7dp"
-        android:maxLines="7"
-        android:minLines="1"
-        android:paddingBottom="10dp"
-        android:text=""
+        android:layout_marginBottom="20dp"
         android:textAlignment="center"
         android:textColor="@color/lta_blue"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/popupOneChoiceOkButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textSize="16sp" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/popupOneChoiceCancelButton"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:elevation="5dp"
-        android:text="Avbryt"
-        android:textAllCaps="false"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/popupOneChoiceOkButton"
-        app:layout_constraintEnd_toStartOf="@+id/popupOneChoiceOkButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/popupOneChoiceOkButton" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/popupOneChoiceOkButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
-        android:elevation="5dp"
-        android:text="Logga ut"
-        android:textAllCaps="false"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/popupOneChoiceCancelButton" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/popupOneChoiceCancelButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="6dp"
+            android:minWidth="0dp"
+            android:minHeight="48dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:textAllCaps="false"
+            android:textSize="16sp" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/popupOneChoiceOkButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="6dp"
+            android:minWidth="0dp"
+            android:minHeight="48dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:textAllCaps="false"
+            android:textSize="16sp" />
+    </LinearLayout>
+</LinearLayout>

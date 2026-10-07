@@ -332,7 +332,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun showLogOutPopup(){
         val alertFm = supportFragmentManager.beginTransaction()
-        val width = (mBind.mainLayout.measuredWidth * 0.75).toInt()
+        val density = resources.displayMetrics.density
+        val availableWidth = mBind.mainLayout.width.takeIf { it > 0 }
+            ?: resources.displayMetrics.widthPixels
+        val width = (availableWidth - (48 * density).toInt())
+            .coerceAtMost((480 * density).toInt()).coerceAtLeast(1)
         val oneChoicePopup = OneChoicePopup.show(
             width = width,
             title = getString(R.string.log_out),
