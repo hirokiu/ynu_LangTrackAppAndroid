@@ -185,3 +185,12 @@ iOSの件数計算XCTestは接続したiPhone上で成功済み。
 共通OneChoicePopupの内側を24dp、ボタン間を12dp、ボタン幅を均等配分にし、
 狭い画面では文字を折り返せるwrap_content高さを使用。本文の7行上限も撤去。
 Dev/Protoビルド・差分チェック成功。OPPOへ上書き配置。実機の見た目確認待ち。
+
+
+### Proto実機確認の準備（2026-10-07）
+Protoサーバーに/meと45名UID対応、更新APIを反映済み。通常通知・配信準備と新規認証モジュールは停止中。
+ビルド成功済みの最新版ProtoDebugをOPPOへ既存データを保持して上書き配置・起動成功。通常アプリID com.alchembright.dev.langtrackapp、Devとは別アプリ。
+本人に従来アカウントでのログイン・Proto表示・Survey一覧を確認依頼中。回答送信・Proto実Pushはまだ未確認。一般配布は行っていない。
+
+本人がiOS/Androidともにログアウト→従来認証で再ログイン→Proto Survey一覧表示を確認済み。
+続いてhiroki_u専用にqa_proto_answer_20261007_ios / qa_proto_answer_20261007_androidを用意。各header/open/footerの3ページ、個人情報不要の端末名入力1問。既存データ変更なし、通常通知停止。回答送信確認待ち。
