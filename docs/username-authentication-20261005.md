@@ -194,3 +194,11 @@ Protoサーバーに/meと45名UID対応、更新APIを反映済み。通常通�
 
 本人がiOS/Androidともにログアウト→従来認証で再ログイン→Proto Survey一覧表示を確認済み。
 続いてhiroki_u専用にqa_proto_answer_20261007_ios / qa_proto_answer_20261007_androidを用意。各header/open/footerの3ページ、個人情報不要の端末名入力1問。既存データ変更なし、通常通知停止。回答送信確認待ち。
+
+## Android Proto配布準備（2026-10-08）
+
+ProtoDebugビルドと単体テスト4件成功。確認用APK 2.0.0/versionCode 4をリポジトリ外の ../releases/android/20261008/KIROKUN-Proto-2.0.0-4-review.apk に保存。
+SHA256: 1849a5fa2449d55c36791999fc40c41972b6a55f64fb3932d533142f752d0a9d。
+保全済み2025-11-08 APKと現確認用APKの署名証明書SHA256はともに de9093b6cab795e8246a49ec4dc5171c1f785ff1b1a6653e7d8abf1003d3cf1a。パッケージも同一、旧versionCode 2から4への更新候補。署名一致は未送信データの引継ぎ試験を代替しないため、アンインストールせず上書きして確認する。
+
+現Release設定もdebug署名であり、Google Play提出用ではない。正式な署名・鍵保全・Play App Signing方針を整備するまで、このAPKは限定確認用とする。現時点でAndroid実機未接続、新たなインストールは未実施。次の実機確認はProtoログイン、検証Survey回答、通知受信・タップ、バッジ、再起動。研究者の旧認証は維持。
