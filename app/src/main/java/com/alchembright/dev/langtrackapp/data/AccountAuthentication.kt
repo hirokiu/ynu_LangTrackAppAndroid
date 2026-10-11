@@ -72,7 +72,10 @@ class AccountAuthentication {
                     completed(user.email?.substringBefore('@')?.takeIf { it.isNotBlank() }, token)
                 } else request("me", token = token) { code, response ->
                     val id = (response?.opt("userId") as? String)?.takeIf { it.isNotBlank() }
-                    if (code == 200 && id != null && auth.currentUser?.uid == user.uid) completed(id, token)
+                    if (code == 200 && id != null && auth.currentUser?.uid == user.uid) {
+                        com.alchembright.dev.langtrackapp.util.ProjectEnvironment.accept(response?.optJSONObject("project"))
+                        completed(id, token)
+                    }
                     else completed(null, null)
                 }
             }

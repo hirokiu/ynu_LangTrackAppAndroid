@@ -116,6 +116,7 @@ class MainActivity : AppCompatActivity() {
         }
         mBind = DataBindingUtil.setContentView(this, R.layout.activity_main)
         applySystemBarInsets()
+        com.alchembright.dev.langtrackapp.util.ProjectEnvironment.initialize(this)
         mBind.projectName.text = com.alchembright.dev.langtrackapp.util.ProjectEnvironment.name
         mBind.projectMessage.setText(listOf(R.string.project_description, R.string.project_message_2).random())
         com.alchembright.dev.langtrackapp.util.ProjectEnvironment.bindSelector(mBind.leftDrawerMenu.projectSelector)
@@ -293,6 +294,8 @@ class MainActivity : AppCompatActivity() {
                 viewModel.setIdToken(token)
                 identityReady = true
                 resolvedNotificationUser = id
+                mBind.projectName.text = com.alchembright.dev.langtrackapp.util.ProjectEnvironment.name
+                com.alchembright.dev.langtrackapp.util.ProjectEnvironment.bindSelector(mBind.leftDrawerMenu.projectSelector)
                 mBind.leftDrawerMenu.menuUserNameTextView.text = user.displayName ?: id
                 viewModel.getAssignments()
                 if (!dev) {
