@@ -12,6 +12,7 @@ object ProjectEnvironment {
     private var preferences: android.content.SharedPreferences? = null
     private val cacheKey get() = com.google.firebase.auth.FirebaseAuth.getInstance().currentUser?.uid?.let { BuildConfig.API_BASE_URL + ":" + it }
     val name get() = cacheKey?.let { preferences?.getString(it, null) } ?: if (isDev) "Dev" else "Proto"
+    val subtitle get() = cacheKey?.let { preferences?.getString(it + ":subtitle", null) }
     fun initialize(context: android.content.Context) {
         preferences = context.applicationContext.getSharedPreferences("project-display-names", android.content.Context.MODE_PRIVATE)
     }
@@ -20,7 +21,17 @@ object ProjectEnvironment {
         val value = (project.opt("displayName") as? String)?.trim() ?: return
         if (value.isBlank() || value.codePointCount(0, value.length) > 80 || value.any { Character.isISOControl(it) }) return
         val key = cacheKey ?: return
-        preferences?.edit()?.putString(key, value)?.apply()
+        val edit = preferences?.edit()?.putString(key, value)
+        val subtitle = project.opt("subtitle") as? String
+        if (subtitle != null && subtitle.codePointCount(0, subtitle.length) <= 120 && subtitle.none { Character.isISOControl(it) })
+            edit?.putString(key + ":subtitle", subtitle)
+        else edit?.remove(key + ":subtitle")
+        edit?.apply()
+    }
+    fun bindSubtitle(view: TextView) {
+        val text = subtitle ?: view.context.getString(R.string.project_description)
+        view.text = text
+        view.visibility = if (text.isEmpty()) android.view.View.GONE else android.view.View.VISIBLE
     }
     fun bindSelector(view: TextView) {
         initialize(view.context)

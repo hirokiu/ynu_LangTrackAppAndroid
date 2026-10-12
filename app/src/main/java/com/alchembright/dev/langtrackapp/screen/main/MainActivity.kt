@@ -118,7 +118,7 @@ class MainActivity : AppCompatActivity() {
         applySystemBarInsets()
         com.alchembright.dev.langtrackapp.util.ProjectEnvironment.initialize(this)
         mBind.projectName.text = com.alchembright.dev.langtrackapp.util.ProjectEnvironment.name
-        mBind.projectMessage.setText(listOf(R.string.project_description, R.string.project_message_2).random())
+        com.alchembright.dev.langtrackapp.util.ProjectEnvironment.bindSubtitle(mBind.projectMessage)
         com.alchembright.dev.langtrackapp.util.ProjectEnvironment.bindSelector(mBind.leftDrawerMenu.projectSelector)
 
         onBackPressedDispatcher.addCallback(this, object : androidx.activity.OnBackPressedCallback(true) {
@@ -295,6 +295,7 @@ class MainActivity : AppCompatActivity() {
                 identityReady = true
                 resolvedNotificationUser = id
                 mBind.projectName.text = com.alchembright.dev.langtrackapp.util.ProjectEnvironment.name
+        com.alchembright.dev.langtrackapp.util.ProjectEnvironment.bindSubtitle(mBind.projectMessage)
                 com.alchembright.dev.langtrackapp.util.ProjectEnvironment.bindSelector(mBind.leftDrawerMenu.projectSelector)
                 mBind.leftDrawerMenu.menuUserNameTextView.text = user.displayName ?: id
                 viewModel.getAssignments()
