@@ -4,10 +4,10 @@
 
 ## 成果物
 
-- Proto 2.0.0 / versionCode 6
+- Proto 2.0.0 / versionCode 7
 - 正式鍵でbundleProtoRelease成功、jarsigner verify成功（自己署名証明書の警告はAndroid署名方式による）。
-- `../releases/android/20261014/KIROKUN-Proto-2.0.0-6.aab`
-- SHA256 `b4c406613ca8f1625fe004dda0e07f3155f994a3ec5297448368704cd8ed9aaf`
+- `../releases/android/20261014-warm-start/KIROKUN-Proto-2.0.0-7.aab`
+- SHA256 `dbc66817374b2d1976a103481831d8b17f10e8ff6dc1a0f67456100adff0e788`
 - アップロード・Playから生成されたAPKでの実機確認は未実施。
 
 ## 必要な準備
@@ -21,3 +21,5 @@
 公式情報:
 - https://support.google.com/googleplay/android-developer/answer/14151465
 - https://developer.android.com/studio/publish/app-signing
+
+通知タップ時の白画面を修正した版7で、OPPOの通知→回答送信を本人確認済み。Protoの検証2名分をCSV・JSON出力し件数と内容の一致を確認。ブラウザー操作によるダウンロードとPlay生成APKの検証は別途必要。

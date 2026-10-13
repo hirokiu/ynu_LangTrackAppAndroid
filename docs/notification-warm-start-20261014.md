@@ -4,8 +4,8 @@ OPPO Android14 / 正式署名Proto 2.0.0(6)で、通知をタップするとSpla
 
 SplashActivityをOSの標準的なルーティング専用方式（keep-on-screen→Main開始→finish）へ変更。ガラス調アートはMainActivity内の装飾として表示し、遷移条件から分離。Dev共通の既存ヘルパーの入口は維持。
 
-正式署名2.0.0(7)のAPK/AABビルド成功、署名検証成功。OPPOへ上書きインストール成功（認証情報を維持）。起動はMainActivityを経由し、保存されていた通知対象のSurveyContainerActivityへ到達することをdumpsysで確認。通知を再送しての利用者による再確認は待ち。
+正式署名2.0.0(7)のAPK/AABビルド成功、署名検証成功。OPPOへ上書きインストール成功（認証情報を維持）。起動はMainActivityを経由し、保存されていた通知対象のSurveyContainerActivityへ到達することをdumpsysで確認。修正版で通知を1通再送し、上松がOPPOで通知からSurveyを開き回答送信できたことを確認。ProtoサーバーでもiOS・Android各1件の保存とCSV・JSONの2件出力・内容一致を確認した。
 
 APK SHA256: a6d3f413f027bda45df5ca489035c11cb8d61f5868e6c1d732ba077275625a82
 成果物: ../releases/android/20261014-warm-start/
-版6は一般配布せず、版7の通知再確認後に候補を差し替える。
+版6は一般配布せず、通知再確認済みの版7を配布候補とする。
