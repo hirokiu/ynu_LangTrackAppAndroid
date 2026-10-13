@@ -1,21 +1,19 @@
 package com.alchembright.dev.langtrackapp.screen.splash
 
 import android.os.Bundle
-import com.alchembright.dev.langtrackapp.util.configureLaunchArtwork
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.alchembright.dev.langtrackapp.screen.main.MainActivity
 
-/** System splash followed by the shared branding exit animation. */
+/** Route independently of system splash callbacks, which may be absent on warm starts. */
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         val splash = installSplashScreen()
         super.onCreate(savedInstanceState)
         com.alchembright.dev.langtrackapp.util.NotificationTarget.capture(this, intent)
-        setContentView(com.alchembright.dev.langtrackapp.R.layout.splash_activity)
-        configureLaunchArtwork(splash) {
-            MainActivity.start(this)
-            finish()
-        }
+        splash.setKeepOnScreenCondition { true }
+        startActivity(Intent(this, MainActivity::class.java).putExtra("showLaunchArtwork", true))
+        finish()
     }
 }

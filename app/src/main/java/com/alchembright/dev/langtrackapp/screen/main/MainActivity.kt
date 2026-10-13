@@ -25,6 +25,7 @@ University of York
 * */
 
 import com.alchembright.dev.langtrackapp.util.applySystemBarInsets
+import com.alchembright.dev.langtrackapp.util.showLaunchArtwork
 import android.Manifest.permission.POST_NOTIFICATIONS
 import android.content.Context
 import android.content.Intent
@@ -115,6 +116,9 @@ class MainActivity : AppCompatActivity() {
             ActivityCompat.requestPermissions(this, arrayOf(POST_NOTIFICATIONS), 112)
         }
         mBind = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        if (savedInstanceState == null && intent.getBooleanExtra("showLaunchArtwork", false)) {
+            showLaunchArtwork()
+        }
         applySystemBarInsets()
         com.alchembright.dev.langtrackapp.util.ProjectEnvironment.initialize(this)
         mBind.projectName.text = com.alchembright.dev.langtrackapp.util.ProjectEnvironment.name
