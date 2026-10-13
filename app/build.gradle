@@ -6,6 +6,11 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
+// Distribution credentials are provided locally, never committed to this repository.
+def releaseKeys = ['KIROKUN_KEYSTORE', 'KIROKUN_KEY_ALIAS', 'KIROKUN_STORE_PASSWORD', 'KIROKUN_KEY_PASSWORD']
+def releaseValues = releaseKeys.collectEntries { [(it): System.getenv(it)] }
+def hasReleaseSigning = releaseValues.values().every { it }
+
 android {
     namespace 'com.alchembright.dev.langtrackapp'
     compileSdk 37
@@ -34,11 +39,21 @@ android {
             buildConfigField "String", "API_BASE_URL", '"https://proto.kirokun.alchembright.com/api/"'
         }
     }
+    signingConfigs {
+        distribution {
+            if (hasReleaseSigning) {
+                storeFile file(releaseValues.KIROKUN_KEYSTORE)
+                storePassword releaseValues.KIROKUN_STORE_PASSWORD
+                keyAlias releaseValues.KIROKUN_KEY_ALIAS
+                keyPassword releaseValues.KIROKUN_KEY_PASSWORD
+            }
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.debug
+            if (hasReleaseSigning) signingConfig signingConfigs.distribution
         }
     }
     buildFeatures {
@@ -102,3 +117,19 @@ dependencies {
             }
         }
     }
+
+// Explicit release entry point refuses missing signing instead of falling back to debug.
+tasks.register('verifyDistributionSigning') {
+    doLast {
+        if (!hasReleaseSigning) throw new GradleException('Set all KIROKUN_* signing environment variables; debug signing is not allowed for distribution.')
+        if (!file(releaseValues.KIROKUN_KEYSTORE).isFile()) throw new GradleException('Distribution keystore was not found.')
+    }
+}
+tasks.register('prepareProtoDistribution') {
+    dependsOn 'verifyDistributionSigning', 'assembleProtoRelease'
+}
+tasks.matching { it.name == 'preProtoReleaseBuild' }.configureEach {
+    if (gradle.startParameter.taskNames.any { it.tokenize(':').last() == 'prepareProtoDistribution' }) {
+        dependsOn 'verifyDistributionSigning'
+    }
+}
