@@ -131,6 +131,7 @@ class DevSetupActivity : AppCompatActivity() {
                                     val repo = com.alchembright.dev.langtrackapp.data.RepositoryFactory.getRepository(this@DevSetupActivity)
                                     repo.setCurrentUser(com.alchembright.dev.langtrackapp.data.model.User(userId, userId, user.email ?: ""))
                                     repo.idToken = token
+                                    repo.putDeviceToken()
                                     val navigate = {
                                         if (!isDestroyed && requestGeneration == generation && auth.currentUser?.uid == user.uid) {
                                             com.alchembright.dev.langtrackapp.screen.main.MainActivity.start(this@DevSetupActivity)

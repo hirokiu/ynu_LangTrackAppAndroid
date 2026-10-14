@@ -102,7 +102,10 @@ class Repository(val context: Context) {
     }
 
     fun putDeviceToken(){
-        if (com.alchembright.dev.langtrackapp.util.ProjectEnvironment.isDev) return
+        if (ProjectEnvironment.isDev) {
+            val endpoint = com.alchembright.dev.langtrackapp.BuildConfig.API_BASE_URL.toHttpUrl()
+            if (endpoint.host != "dev.kirokun.alchembright.com" && !(endpoint.host == "localhost" && endpoint.port == 18082)) return
+        }
 
         apiIsAlive { alive, theUrl ->
             //if (alive) {
