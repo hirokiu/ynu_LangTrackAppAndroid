@@ -31,7 +31,6 @@ class MyFirebaseInstanceIDService: FirebaseMessagingService() {
         RepositoryFactory.getRepository(this).putDeviceToken()
     }
     override fun onMessageReceived(message: RemoteMessage) {
-        if (ProjectEnvironment.isDev) return
         if (FirebaseAuth.getInstance().currentUser != null) {
             RepositoryFactory.getRepository(this).getAssignments()
         }
